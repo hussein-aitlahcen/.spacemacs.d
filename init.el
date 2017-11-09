@@ -1,7 +1,5 @@
 (defun dotspacemacs/layers ()
-  "Configuration Layers declaration.
-You should not put any user code in this function besides modifying the variable
-values."
+  "Configuration Layers declaration."
   (setq-default
    dotspacemacs-distribution 'spacemacs
    dotspacemacs-enable-lazy-installation 'unused
@@ -29,12 +27,14 @@ values."
    dotspacemacs-install-packages 'used-only))
 
 (defun dotspacemacs/init ()
+  "Function that will be called before loading packages etc..."
   (dotspacemacs/init/vars)
   (dotspacemacs/init/proxy))
 
 (defun dotspacemacs/user-init ())
 
 (defun dotspacemacs/user-config ()
+  "Custom user configuration, doing all the dsplaying stuff."
   (require 'all-the-icons)
   (require 'spaceline-all-the-icons)
   (use-package spaceline-all-the-icons
@@ -79,6 +79,7 @@ values."
       #x1d539 #x1d507 #x1d517))))
 
 (defun dotspacemacs/init/vars ()
+  "General variable configurations."
   (setq-default
    dotspacemacs-elpa-https t
    dotspacemacs-elpa-timeout 5
@@ -145,6 +146,7 @@ values."
    ))
 
 (defun dotspacemacs/init/proxy ()
+  "Load the proxy configuration if defined."
   (if (file-exists-p "~/.spacemacs.d/proxy.el")
       (load-file "~/.spacemacs.d/proxy.el")))
 
