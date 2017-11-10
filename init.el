@@ -1,10 +1,3 @@
-(defun dotspacemacs-file (FILE)
-  (expand-file-name FILE dotspacemacs-directory))
-
-(defun load-dotspacemacs-file (FILE)
-  "Load a file relative to dotspacemacs directory"
-  (load (dotspacemacs-file FILE)))
-
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration."
   (setq-default
@@ -43,11 +36,12 @@
 
 (defun dotspacemacs/user-init ()
   "Avoid custom-vars to be set in init.el file"
-  (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
-  (load 'custom-file))
+)
 
 (defun dotspacemacs/user-config ()
   "Custom user configuration, doing all the displaying stuff after package are loaded."
+  (setq custom-file "~/.spacemacs.d/custom.el")
+  (load-file custom-file)
   (dotspacemacs/user-config/icons)
   (dotspacemacs/user-config/magit)
   (dotspacemacs/user-config/pretty))
@@ -120,8 +114,8 @@
 
 (defun dotspacemacs/init/proxy ()
   "Load the proxy configuration if defined."
-  (if (file-exists-p (dotspacemacs-file "proxy.el")
-      (load-dotspacemacs-file "proxy.el"))))
+  (if (file-exists-p "~/.spacemacs.d/proxy.el")
+      (load-file "~/.spacemacs.d/proxy.el")))
 
 (defun dotspacemacs/user-config/icons ()
   (require 'all-the-icons)
@@ -137,11 +131,11 @@
   (setq neo-theme 'icons))
 
 (defun dotspacemacs/user-config/magit ()
-  (load-dotspacemacs-file "magit-gerrit.el"))
+  (load-file "~/.spacemacs.d/magit-gerrit.el"))
 
 (defun dotspacemacs/user-config/pretty ()
-  (load-dotspacemacs-file "pretty-magit.el")
-  (load-dotspacemacs-file "pretty-fonts.el")
+  (load-file "~/.spacemacs.d/pretty-magit.el")
+  (load-file "~/.spacemacs.d/pretty-fonts.el")
   (require 'pretty-mode)
   (require 'pretty-magit)
   (require 'pretty-fonts)
@@ -169,3 +163,17 @@
       #x1d54a #x2a02 #x2205 #x27fb #x27fc #x2299 #x1d54b #x1d53d
       #x1d539 #x1d507 #x1d517))))
 
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (ace-link magit magit-popup yaml-mode ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package toc-org tern tagedit spaceline-all-the-icons smeargle slim-mode scss-mode sass-mode restart-emacs rainbow-delimiters pug-mode pretty-mode popwin persp-mode pcre2el paradox orgit org-projectile org-present org-pomodoro org-download org-bullets open-junk-file neotree move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum livid-mode linum-relative link-hint less-css-mode json-mode js2-refactor js-doc jinja2-mode info+ indent-guide hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-ag groovy-mode google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-commit gh-md flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu emmet-mode elisp-slime-nav dumb-jump dracula-theme define-word column-enforce-mode coffee-mode clean-aindent-mode auto-highlight-symbol auto-compile ansible-doc ansible aggressive-indent adaptive-wrap ace-window ace-jump-helm-line))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((((type nil)) (:background "#000000" :foreground "#f8f8f2")) (((class color) (min-colors 89)) (:background "#282a36" :foreground "#f8f8f2")))))
