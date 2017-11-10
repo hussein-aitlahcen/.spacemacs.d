@@ -2,7 +2,7 @@
   "Configuration Layers declaration."
   (setq-default
    dotspacemacs-distribution 'spacemacs
-   dotspacemacs-enable-lazy-installation 'unused
+   dotspacemacs-enable-lazy-installation 'all
    dotspacemacs-ask-for-lazy-installation t
    dotspacemacs-configuration-layer-path '()
    dotspacemacs-configuration-layers
@@ -169,3 +169,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
