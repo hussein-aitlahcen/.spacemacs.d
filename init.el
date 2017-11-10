@@ -37,7 +37,9 @@
 (defun dotspacemacs/user-init ()
   "Avoid custom-vars to be set in init.el file"
   (setq custom-file "~/.spacemacs.d/custom.el")
-  (load-file custom-file))
+  (if (not (file-exists-p custom-file))
+      (write-region "" nil custom-file)
+    (load-file custom-file)))
 
 (defun dotspacemacs/user-config ()
   "Custom user configuration, doing all the displaying stuff after package are loaded."
