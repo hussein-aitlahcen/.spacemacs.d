@@ -1,3 +1,5 @@
+(require 'magit)
+
 (defun magit-push-to-gerrit ()
   (interactive)
   (magit-git-command-topdir "git push origin HEAD:refs/for/master"))
