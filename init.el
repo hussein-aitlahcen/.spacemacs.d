@@ -1,6 +1,9 @@
+(defun dotspacemacs-file (FILE)
+  (expand-file-name FILE dotspacemacs-directory))
+
 (defun load-dotspacemacs-file (FILE)
   "Load a file relative to dotspacemacs directory"
-  (load (expand-file-name FILE dotspacemacs-directory)))
+  (load (dotspacemacs-file FILE)))
 
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration."
@@ -117,8 +120,8 @@
 
 (defun dotspacemacs/init/proxy ()
   "Load the proxy configuration if defined."
-  (if (file-exists-p "~/.spacemacs.d/proxy.el")
-      (load-file "~/.spacemacs.d/proxy.el")))
+  (if (file-exists-p (dotspacemacs-file "proxy.el")
+      (load-dotspacemacs-file "proxy.el"))))
 
 (defun dotspacemacs/user-config/icons ()
   (require 'all-the-icons)
