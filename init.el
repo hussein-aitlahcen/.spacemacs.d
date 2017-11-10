@@ -18,7 +18,7 @@
      git
      markdown
      org
-     yaml
+     ansible
      )
    dotspacemacs-additional-packages '(
                                       ansible
