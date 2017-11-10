@@ -49,6 +49,7 @@
   (spaceline-all-the-icons--setup-neotree)
   (setq neo-theme 'icons)
 
+  (load-file "~/.spacemacs.d/magit-gerrit.el")
   (load-file "~/.spacemacs.d/pretty-magit.el")
   (load-file "~/.spacemacs.d/pretty-fonts.el")
 
