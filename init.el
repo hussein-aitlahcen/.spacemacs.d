@@ -40,7 +40,8 @@
 
 (defun dotspacemacs/user-init ()
   "Avoid custom-vars to be set in init.el file"
-  (load-dotspacemacs-file "custom.el"))
+  (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
+  (load 'custom-file))
 
 (defun dotspacemacs/user-config ()
   "Custom user configuration, doing all the displaying stuff after package are loaded."
@@ -164,3 +165,4 @@
      ("Symbola"
       #x1d54a #x2a02 #x2205 #x27fb #x27fc #x2299 #x1d54b #x1d53d
       #x1d539 #x1d507 #x1d517))))
+
