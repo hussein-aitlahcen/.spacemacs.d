@@ -35,7 +35,7 @@
 (defun dotspacemacs/user-init ())
 
 (defun dotspacemacs/user-config ()
-  "Custom user configuration, doing all the displaying stuff."
+  "Custom user configuration, doing all the displaying stuff after package are loaded."
   (require 'all-the-icons)
   (require 'spaceline-all-the-icons)
   (use-package spaceline-all-the-icons
