@@ -119,11 +119,7 @@
       (load-file "~/.spacemacs.d/proxy.el")))
 
 (defun dotspacemacs/user-config/icons ()
-  (require 'all-the-icons)
-  (require 'spaceline-all-the-icons)
-  (use-package spaceline-all-the-icons
-    :after spaceline
-    :config (spaceline-all-the-icons-theme))
+  (spaceline-all-the-icons-theme)
   (spaceline-all-the-icons--setup-anzu)
   (spaceline-all-the-icons--setup-package-updates)
   (spaceline-all-the-icons--setup-git-ahead)
@@ -137,9 +133,6 @@
 (defun dotspacemacs/user-config/pretty ()
   (load-file "~/.spacemacs.d/pretty-magit.el")
   (load-file "~/.spacemacs.d/pretty-fonts.el")
-  (require 'pretty-mode)
-  (require 'pretty-magit)
-  (require 'pretty-fonts)
   (global-pretty-mode t)
   (pretty-deactivate-groups
    '(:equality :ordering :ordering-double :ordering-triple
