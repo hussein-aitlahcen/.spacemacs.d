@@ -62,8 +62,8 @@
    dotspacemacs-startup-buffer-responsive t
    dotspacemacs-scratch-mode 'text-mode
    dotspacemacs-colorize-cursor-according-to-state t
-   dotspacemacs-default-font '("Fira Code"
-                               :size 14
+   dotspacemacs-default-font '("Consolas"
+                               :size 16
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
