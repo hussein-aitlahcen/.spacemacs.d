@@ -7,6 +7,14 @@
    dotspacemacs-configuration-layer-path '()
    dotspacemacs-configuration-layers
    '(
+     (auto-completion :variables
+                      auto-completion-return-key-behavior 'complete
+                      auto-completion-tab-key-behavior 'cycle
+                      auto-completion-complete-with-key-sequence nil
+                      auto-completion-complete-with-key-sequence-delay 0.2
+                      auto-completion-private-snippets-directory nil)
+     java
+     c-c++
      html
      javascript
      helm
@@ -15,9 +23,9 @@
      markdown
      org
      ansible
+     clojure
      )
    dotspacemacs-additional-packages '(
-                                      ansible
                                       dracula-theme
                                       pretty-mode
                                       dash
@@ -39,10 +47,15 @@
   (setq custom-file "~/.spacemacs.d/custom.el")
   (if (not (file-exists-p custom-file))
       (write-region "" nil custom-file)
-    (load-file custom-file)))
+    (load-file custom-file))
+  (setq eclim-eclipse-dirs '("~/eclipse")
+        eclim-executable "~/eclipse/eclim"
+        eclimd-executable "~/eclipse/eclimd"
+        eclimd-wait-for-process t))
 
 (defun dotspacemacs/user-config ()
   "Custom user configuration, doing all the displaying stuff after package are loaded."
+  (dotspacemacs/user-config/vim)
   (dotspacemacs/user-config/icons)
   (dotspacemacs/user-config/magit)
   (dotspacemacs/user-config/pretty))
@@ -118,6 +131,11 @@
   (if (file-exists-p "~/.spacemacs.d/proxy.el")
       (load-file "~/.spacemacs.d/proxy.el")))
 
+(defun dotspacemacs/user-config/vim ()
+  (setq-default evil-escape-key-sequence "jk")
+  (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
+  (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line))
+
 (defun dotspacemacs/user-config/icons ()
   (spaceline-all-the-icons-theme)
   (spaceline-all-the-icons--setup-anzu)
@@ -137,10 +155,7 @@
   (pretty-deactivate-groups
    '(:equality :ordering :ordering-double :ordering-triple
                :arrows :arrows-twoheaded :punctuation
-               :logic :sets))
-  (pretty-activate-groups
-   '(:sub-and-superscripts :greek :arithmetic-nary))
-  (global-prettify-symbols-mode 1)
+               :logic :sets :sub-and-superscripts :greek :arithmetic-nary))
   (pretty-fonts-set-kwds
    '((pretty-fonts-fira-font prog-mode-hook org-mode-hook)))
   (pretty-fonts-set-fontsets
