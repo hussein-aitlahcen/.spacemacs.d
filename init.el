@@ -26,6 +26,7 @@
      org
      ansible
      clojure
+     csharp
      )
    dotspacemacs-additional-packages '(
                                       dracula-theme
@@ -46,6 +47,7 @@
 
 (defun dotspacemacs/user-init ()
   "Avoid custom-vars to be set in init.el file"
+  (setq-default omnisharp-server-executable-path "~/omnisharp/run")
   (setq custom-file "~/.spacemacs.d/custom.el")
   (if (not (file-exists-p custom-file))
       (write-region "" nil custom-file)
@@ -134,6 +136,8 @@
       (load-file "~/.spacemacs.d/proxy.el")))
 
 (defun dotspacemacs/user-config/vim ()
+  (require 'evil-mc)
+  (global-evil-mc-mode  1)
   (setq-default evil-escape-key-sequence "jk")
   (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
   (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line))
