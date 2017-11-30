@@ -7,13 +7,15 @@
    dotspacemacs-configuration-layer-path '()
    dotspacemacs-configuration-layers
    '(
+     docker
+     haskell
+     auto-completion (haskell :variables haskell-completion-backend 'intero)
      (auto-completion :variables
                       auto-completion-return-key-behavior 'complete
                       auto-completion-tab-key-behavior 'cycle
                       auto-completion-complete-with-key-sequence nil
                       auto-completion-complete-with-key-sequence-delay 0.2
                       auto-completion-private-snippets-directory nil)
-     java
      c-c++
      html
      javascript
