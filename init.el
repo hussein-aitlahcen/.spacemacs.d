@@ -161,8 +161,10 @@
   (pretty-deactivate-groups
    '(:equality :ordering :ordering-double :ordering-triple
                :arrows :arrows-twoheaded :punctuation
-               :logic :sets :sub-and-superscripts :greek :arithmetic-nary))
-  (pretty-fonts-set-kwds
+               :logic :sets))
+  (pretty-activate-groups
+   '(:sub-and-superscripts :greek :arithmetic-nary))
+ (pretty-fonts-set-kwds
    '((pretty-fonts-fira-font prog-mode-hook org-mode-hook)))
   (pretty-fonts-set-fontsets
    '(("fontawesome"
