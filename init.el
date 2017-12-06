@@ -159,6 +159,13 @@
 (defun dotspacemacs/user-config/pretty ()
   (load-file "~/.spacemacs.d/pretty-magit.el")
   (load-file "~/.spacemacs.d/pretty-fonts.el")
+  (global-whitespace-mode t)
+  (set-face-foreground 'whitespace-newline "#636363")
+  (set-face-foreground 'whitespace-tab "#636363")
+  (set-face-background 'whitespace-tab 'nil)
+  (set-face-underline  'whitespace-tab t)
+  (set-face-foreground 'whitespace-space "#636363")
+  (set-face-background 'whitespace-space 'nil)
   (global-pretty-mode t)
   (pretty-deactivate-groups
    '(:equality :ordering :ordering-double :ordering-triple
