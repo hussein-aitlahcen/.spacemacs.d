@@ -48,6 +48,7 @@
 
 (defun dotspacemacs/user-init ()
   "Avoid custom-vars to be set in init.el file"
+  (setq-default spacemacs-show-trailing-whitespace t)
   (setq-default omnisharp-server-executable-path "~/omnisharp/run")
   (setq custom-file "~/.spacemacs.d/custom.el")
   (if (not (file-exists-p custom-file))
@@ -122,7 +123,7 @@
    dotspacemacs-line-numbers t
    dotspacemacs-folding-method 'evil
    dotspacemacs-smartparens-strict-mode nil
-   dotspacemacs-smart-closing-parenthesis nil
+   dotspacemacs-smart-closing-parenthesis t
    dotspacemacs-highlight-delimiters 'all
    dotspacemacs-persistent-server nil
    dotspacemacs-search-tools '("ag" "pt" "ack" "grep")
