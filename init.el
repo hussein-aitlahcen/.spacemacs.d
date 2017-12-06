@@ -27,6 +27,7 @@
      ansible
      clojure
      csharp
+     scala
      )
    dotspacemacs-additional-packages '(
                                       dracula-theme
