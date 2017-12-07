@@ -160,16 +160,15 @@
   (load-file "~/.spacemacs.d/pretty-magit.el")
   (load-file "~/.spacemacs.d/pretty-fonts.el")
   (global-whitespace-mode t)
-  (set-face-foreground 'whitespace-newline "#454545")
-  (set-face-foreground 'whitespace-tab "#454545")
+  (set-face-foreground 'whitespace-newline "#606060")
+  (set-face-foreground 'whitespace-tab "#606060")
   (set-face-background 'whitespace-tab 'nil)
-  (set-face-underline  'whitespace-tab t)
-  (set-face-foreground 'whitespace-space "#454545")
+  (set-face-foreground 'whitespace-space "#606060")
   (set-face-background 'whitespace-space 'nil)
+  (setq whitespace-line-column 500)
   (setq whitespace-display-mappings
         '((newline-mark 10 [182 10])
-          (space-mark 32 [183] [46])
-          (tab-mark 9 [9655 9] [92 9])))
+          (space-mark 32 [183] [46])))
   (global-pretty-mode t)
   (pretty-deactivate-groups
    '(:equality :ordering :ordering-double :ordering-triple
