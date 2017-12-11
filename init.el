@@ -53,23 +53,27 @@
 
 (defun dotspacemacs/user-init ()
   "Avoid custom-vars to be set in init.el file"
+  (setq-default dotspacemacs-persistent-server t)
+  (setq-default centered-window-mode t)
   (setq-default spacemacs-show-trailing-whitespace t)
-  (setq-default omnisharp-server-executable-path "~/omnisharp/run")
   (setq custom-file "~/.spacemacs.d/custom.el")
   (if (not (file-exists-p custom-file))
       (write-region "" nil custom-file)
-    (load-file custom-file))
-  (setq eclim-eclipse-dirs '("~/eclipse")
-        eclim-executable "~/eclipse/eclim"
-        eclimd-executable "~/eclipse/eclimd"
-        eclimd-wait-for-process t))
+    (load-file custom-file)))
 
 (defun dotspacemacs/user-config ()
   "Custom user configuration, doing all the displaying stuff after package are loaded."
-  (dotspacemacs/user-config/vim)
+  (dotspacemacs/user-config/pretty)
   (dotspacemacs/user-config/icons)
-  (dotspacemacs/user-config/magit)
-  (dotspacemacs/user-config/pretty))
+  (dotspacemacs/user-config/legalese)
+  (dotspacemacs/user-config/vim)
+  (dotspacemacs/user-config/haskell)
+  (dotspacemacs/user-config/csharp)
+  (dotspacemacs/user-config/java)
+  (dotspacemacs/user-config/magit))
+
+(defun dotspacemacs/defer-until-after-config ()
+  )
 
 (defun dotspacemacs/init/vars ()
   "General variable configurations."
@@ -128,7 +132,7 @@
    dotspacemacs-line-numbers t
    dotspacemacs-folding-method 'evil
    dotspacemacs-smartparens-strict-mode nil
-   dotspacemacs-smart-closing-parenthesis t
+   dotspacemacs-smart-closing-parenthesis nil
    dotspacemacs-highlight-delimiters 'all
    dotspacemacs-persistent-server nil
    dotspacemacs-search-tools '("ag" "pt" "ack" "grep")
@@ -143,8 +147,7 @@
       (load-file "~/.spacemacs.d/proxy.el")))
 
 (defun dotspacemacs/user-config/vim ()
-  (require 'evil-mc)
-  (global-evil-mc-mode  1)
+  (global-evil-mc-mode t)
   (setq-default evil-escape-key-sequence "jk")
   (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
   (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line))
@@ -158,17 +161,31 @@
   (spaceline-all-the-icons--setup-neotree)
   (setq neo-theme 'icons))
 
+(defun dotspacemacs/user-config/csharp ()
+  (setq-default omnisharp-server-executable-path "~/omnisharp/run"))
+
+(defun dotspacemacs/user-config/haskell ())
+
+(defun dotspacemacs/user-config/java ()
+  (setq eclim-eclipse-dirs '("~/eclipse")
+        eclim-executable "~/eclipse/eclim"
+        eclimd-executable "~/eclipse/eclimd"
+        eclimd-wait-for-process t))
+
 (defun dotspacemacs/user-config/magit ()
   (load-file "~/.spacemacs.d/magit-gerrit.el"))
 
 (defun dotspacemacs/user-config/pretty ()
   (load-file "~/.spacemacs.d/pretty-magit.el")
   (load-file "~/.spacemacs.d/pretty-fonts.el")
+  (require 'golden-ratio)
+  (setq golden-ratio-auto-scale t)
+  (golden-ratio-mode 1)
   (global-whitespace-mode t)
-  (set-face-foreground 'whitespace-newline "#606060")
-  (set-face-foreground 'whitespace-tab "#606060")
+  (set-face-foreground 'whitespace-newline "#505050")
+  (set-face-foreground 'whitespace-tab "#505050")
   (set-face-background 'whitespace-tab 'nil)
-  (set-face-foreground 'whitespace-space "#606060")
+  (set-face-foreground 'whitespace-space "#505050")
   (set-face-background 'whitespace-space 'nil)
   (setq whitespace-line-column 500)
   (setq whitespace-display-mappings
@@ -196,3 +213,7 @@
      ("Symbola"
       #x1d54a #x2a02 #x2205 #x27fb #x27fc #x2299 #x1d54b #x1d53d
       #x1d539 #x1d507 #x1d517))))
+
+(defun dotspacemacs/user-config/legalese ()
+  (setq legalese-default-copyright "Hussein Ait-Lahcen")
+  (setq legalese-default-author "Hussein Ait-Lahcen <hussein.aitlahcen@gmail.com>"))
