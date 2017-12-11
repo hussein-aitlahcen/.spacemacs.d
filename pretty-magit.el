@@ -24,8 +24,8 @@
 (pretty-magit "Fix"     ? (:foreground "#FB6542" :height 1.2))
 (pretty-magit "Clean"   ? (:foreground "#FFBB00" :height 1.2))
 (pretty-magit "Docs"    ? (:foreground "#3F681C" :height 1.2))
-(pretty-magit "master"  ? (:box t :height 1.2) t)
-(pretty-magit "origin"  ? (:box t :height 1.2) t)
+(pretty-magit "master"  ? (:height 1.2) t)
+(pretty-magit "origin"  ? (:height 1.2) t)
 
 ;;;###autoload
 (defun add-magit-faces ()
