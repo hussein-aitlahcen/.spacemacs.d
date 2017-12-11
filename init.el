@@ -6,10 +6,12 @@
    dotspacemacs-ask-for-lazy-installation nil
    dotspacemacs-configuration-layer-path '()
    dotspacemacs-configuration-layers
-   '(
+   '(graphviz
      docker
      haskell
-     auto-completion (haskell :variables haskell-completion-backend 'intero)
+     (haskell :variables haskell-enable-hindent-style "chris-done")
+     auto-completion (haskell :variables
+                              haskell-completion-backend 'intero)
      (auto-completion :variables
                       auto-completion-return-key-behavior 'complete
                       auto-completion-tab-key-behavior 'cycle
@@ -28,17 +30,20 @@
      clojure
      csharp
      scala
+     erc
      )
    dotspacemacs-additional-packages '(
+                                      all-the-icons
+                                      spaceline-all-the-icons
+                                      centered-window-mode
                                       dracula-theme
                                       pretty-mode
                                       dash
-                                      spaceline-all-the-icons
                                       groovy-mode
-                                      all-the-icons
+                                      legalese
                                       )
    dotspacemacs-frozen-packages '()
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(vi-tilde-fringe)
    dotspacemacs-install-packages 'used-only))
 
 (defun dotspacemacs/init ()
