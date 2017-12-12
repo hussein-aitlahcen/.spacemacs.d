@@ -41,6 +41,7 @@
                                       dash
                                       groovy-mode
                                       legalese
+                                      processing-mode
                                       )
    dotspacemacs-frozen-packages '()
    dotspacemacs-excluded-packages '(vi-tilde-fringe)
