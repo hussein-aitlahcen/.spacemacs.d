@@ -129,8 +129,8 @@
    dotspacemacs-show-transient-state-title t
    dotspacemacs-show-transient-state-color-guide t
    dotspacemacs-mode-line-unicode-symbols t
-   dotspacemacs-smooth-scrolling t
-   dotspacemacs-line-numbers t
+   dotspacemacs-smooth-scrolling nil
+   dotspacemacs-line-numbers nil
    dotspacemacs-folding-method 'evil
    dotspacemacs-smartparens-strict-mode nil
    dotspacemacs-smart-closing-parenthesis nil
@@ -156,9 +156,7 @@
 (defun dotspacemacs/user-config/icons ()
   (spaceline-all-the-icons-theme)
   (spaceline-all-the-icons--setup-anzu)
-  (spaceline-all-the-icons--setup-package-updates)
   (spaceline-all-the-icons--setup-git-ahead)
-  (spaceline-all-the-icons--setup-paradox)
   (spaceline-all-the-icons--setup-neotree)
   (setq neo-theme 'icons))
 
@@ -181,9 +179,8 @@
   (load-file "~/.spacemacs.d/pretty-eshell.el")
   (load-file "~/.spacemacs.d/pretty-magit.el")
   (require 'golden-ratio)
-  (golden-ratio-mode 1)
-  (setq eshell-scroll-to-bottom-on-output nil)
   (global-whitespace-mode t)
+  (golden-ratio-mode 1)
   (set-face-foreground 'whitespace-newline "#505050")
   (set-face-foreground 'whitespace-tab "#505050")
   (set-face-background 'whitespace-tab 'nil)
