@@ -66,10 +66,10 @@
 (defun dotspacemacs/user-config ()
   "Custom user configuration, doing all the displaying stuff after package are loaded."
   (dotspacemacs/user-config/pretty)
+  (dotspacemacs/user-config/layout)
+  (dotspacemacs/user-config/editing)
   (dotspacemacs/user-config/icons)
   (dotspacemacs/user-config/legalese)
-  (dotspacemacs/user-config/vim)
-  (dotspacemacs/user-config/haskell)
   (dotspacemacs/user-config/csharp)
   (dotspacemacs/user-config/java)
   (dotspacemacs/user-config/magit))
@@ -148,12 +148,6 @@
   (if (file-exists-p "~/.spacemacs.d/proxy.el")
       (load-file "~/.spacemacs.d/proxy.el")))
 
-(defun dotspacemacs/user-config/vim ()
-  (global-evil-mc-mode t)
-  (setq-default evil-escape-key-sequence "jk")
-  (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
-  (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line))
-
 (defun dotspacemacs/user-config/icons ()
   (spaceline-all-the-icons-theme)
   (spaceline-all-the-icons--setup-anzu)
@@ -164,8 +158,6 @@
 (defun dotspacemacs/user-config/csharp ()
   (setq-default omnisharp-server-executable-path "~/omnisharp/run"))
 
-(defun dotspacemacs/user-config/haskell ())
-
 (defun dotspacemacs/user-config/java ()
   (setq eclim-eclipse-dirs '("~/eclipse")
         eclim-executable "~/eclipse/eclim"
@@ -175,29 +167,38 @@
 (defun dotspacemacs/user-config/magit ()
   (load-file "~/.spacemacs.d/magit-gerrit.el"))
 
-(defun dotspacemacs/user-config/pretty ()
-  (load-file "~/.spacemacs.d/pretty-fonts.el")
-  (load-file "~/.spacemacs.d/pretty-eshell.el")
-  (load-file "~/.spacemacs.d/pretty-magit.el")
+(defun dotspacemacs/user-config/layout ()
   (require 'golden-ratio)
-  (global-whitespace-mode t)
-  (golden-ratio-mode 1)
+  (golden-ratio-mode 1))
+
+(defun dotspacemacs/user-config/editing ()
+  ;; Waiting emacs26
+  ;; (global-display-line-numbers-mode t)
+  (global-evil-mc-mode t)
+  (setq-default evil-escape-key-sequence "jk")
+  (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
+  (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)(global-whitespace-mode t)
+  (setq whitespace-line-column 500)
+  (setq whitespace-display-mappings
+        '((newline-mark 10 [182 10])
+          (space-mark 32 [183] [46])))
   (set-face-foreground 'whitespace-newline "#505050")
   (set-face-foreground 'whitespace-tab "#505050")
   (set-face-background 'whitespace-tab 'nil)
   (set-face-foreground 'whitespace-space "#505050")
   (set-face-background 'whitespace-space 'nil)
-  (setq whitespace-line-column 500)
-  (setq whitespace-display-mappings
-        '((newline-mark 10 [182 10])
-          (space-mark 32 [183] [46])))
+  (set-cursor-color "#ffffff"))
+
+(defun dotspacemacs/user-config/pretty ()
+  (load-file "~/.spacemacs.d/pretty-fonts.el")
+  (load-file "~/.spacemacs.d/pretty-eshell.el")
+  (load-file "~/.spacemacs.d/pretty-magit.el")
   (global-pretty-mode t)
   (pretty-deactivate-groups
    '(:equality :ordering :ordering-double :ordering-triple
                :arrows :arrows-twoheaded :punctuation
-               :logic :sets))
-  (pretty-activate-groups
-   '(:sub-and-superscripts :greek :arithmetic-nary))
+               :logic :sets
+               :sub-and-superscripts :greek :arithmetic-nary))
   (pretty-fonts-set-kwds
    '((pretty-fonts-fira-font prog-mode-hook org-mode-hook)))
   (pretty-fonts-set-fontsets
