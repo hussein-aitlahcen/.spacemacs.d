@@ -8,4 +8,3 @@
   ?m
   "Push to gerrit"
   'magit-push-to-gerrit)
-

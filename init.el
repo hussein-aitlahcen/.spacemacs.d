@@ -96,7 +96,7 @@
                                :size 16
                                :weight normal
                                :width normal
-                               :powerline-scale 1.1)
+                               :powerline-scale 1.4)
    dotspacemacs-leader-key "SPC"
    dotspacemacs-emacs-command-key "SPC"
    dotspacemacs-ex-command-key ":"
@@ -174,8 +174,10 @@
 (defun dotspacemacs/user-config/editing ()
   ;; Waiting emacs26
   ;; (global-display-line-numbers-mode t)
+  (setq evil-insert-state-cursor '((bar . 3) "white")
+        evil-normal-state-cursor '(box "white"))
   (global-evil-mc-mode t)
-  (setq-default evil-escape-key-sequence "jk")
+  (setq evil-escape-key-sequence "jk")
   (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
   (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)(global-whitespace-mode t)
   (setq whitespace-line-column 500)
@@ -186,8 +188,7 @@
   (set-face-foreground 'whitespace-tab "#505050")
   (set-face-background 'whitespace-tab 'nil)
   (set-face-foreground 'whitespace-space "#505050")
-  (set-face-background 'whitespace-space 'nil)
-  (set-cursor-color "#ffffff"))
+  (set-face-background 'whitespace-space 'nil))
 
 (defun dotspacemacs/user-config/pretty ()
   (load-file "~/.spacemacs.d/pretty-fonts.el")
