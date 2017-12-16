@@ -30,6 +30,7 @@
      clojure
      csharp
      scala
+     pdf-tools
      erc
      )
    dotspacemacs-additional-packages '(
