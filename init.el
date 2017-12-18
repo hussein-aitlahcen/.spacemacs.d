@@ -194,7 +194,7 @@
   (set-face-foreground 'whitespace-newline "#505050")
   (set-face-foreground 'whitespace-tab "#505050")
   (set-face-background 'whitespace-tab 'nil)
-  (set-face-foreground 'whitespace-space "#505050")
+  (set-face-foreground 'whitespace-space"#454545")
   (set-face-background 'whitespace-space 'nil))
 
 (defun dotspacemacs/user-config/pretty ()
