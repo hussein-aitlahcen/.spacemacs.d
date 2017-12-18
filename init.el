@@ -35,6 +35,10 @@
      treemacs
      theming
      xkcd
+     (shell :variables
+            shell-default-shell 'eshell
+            shell-default-position 'bottom
+            shell-default-height 30)
      )
    dotspacemacs-additional-packages '(
                                       all-the-icons
