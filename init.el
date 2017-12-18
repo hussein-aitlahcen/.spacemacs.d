@@ -57,9 +57,9 @@
 
 (defun dotspacemacs/init ()
   "Function that will be called before loading packages etc..."
-  (setq theming-modifications
-        '((dracula
-           (default :background "#212121"))))
+  ;; (setq theming-modifications
+  ;;       '((dracula
+  ;;          (default :background "#212121"))))
   (dotspacemacs/init/vars)
   (dotspacemacs/init/proxy))
 
