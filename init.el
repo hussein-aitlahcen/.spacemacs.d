@@ -175,8 +175,9 @@
   (load-file "~/.spacemacs.d/magit-gerrit.el"))
 
 (defun dotspacemacs/user-config/layout ()
-  (require 'golden-ratio)
-  (golden-ratio-mode 1))
+  ;; (require 'golden-ratio)
+  ;; (golden-ratio-mode 1)
+  )
 
 (defun dotspacemacs/user-config/editing ()
   ;; Waiting emacs26
