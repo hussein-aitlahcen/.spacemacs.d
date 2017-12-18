@@ -32,6 +32,9 @@
      scala
      pdf-tools
      erc
+     treemacs
+     theming
+     xkcd
      )
    dotspacemacs-additional-packages '(
                                       all-the-icons
@@ -50,6 +53,9 @@
 
 (defun dotspacemacs/init ()
   "Function that will be called before loading packages etc..."
+  (setq theming-modifications
+        '((dracula
+           (default :background "#212121"))))
   (dotspacemacs/init/vars)
   (dotspacemacs/init/proxy))
 
@@ -73,9 +79,6 @@
   (dotspacemacs/user-config/csharp)
   (dotspacemacs/user-config/java)
   (dotspacemacs/user-config/magit))
-
-(defun dotspacemacs/defer-until-after-config ()
-  )
 
 (defun dotspacemacs/init/vars ()
   "General variable configurations."
@@ -177,7 +180,7 @@
   (setq evil-insert-state-cursor '((bar . 3) "white")
         evil-normal-state-cursor '(box "white"))
   (global-evil-mc-mode t)
-  (setq evil-escape-key-sequence "jk")
+  (setq evil-escape-key-sequence "dk")
   (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
   (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)(global-whitespace-mode t)
   (setq whitespace-line-column 500)
