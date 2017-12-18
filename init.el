@@ -181,7 +181,7 @@
 (defun dotspacemacs/user-config/editing ()
   ;; Waiting emacs26
   ;; (global-display-line-numbers-mode t)
-  (setq evil-insert-state-cursor '((bar . 3) "white")
+  (setq evil-insert-state-cursor '((bar . 4) "white")
         evil-normal-state-cursor '(box "white"))
   (global-evil-mc-mode t)
   (setq evil-escape-key-sequence "dk")
