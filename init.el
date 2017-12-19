@@ -184,6 +184,7 @@
 (defun user-config/email ()
   (add-hook 'gnus-message-setup-hook 'mml-secure-message-sign-pgpmime)
   (setq message-signature t)
+  (setq mm-verify-option 'always)
   (setq epa-file-cache-passphrase-for-symmetric-encryption t)
   (setq shr-color-visible-luminance-min 80)
   (setq user-full-name "Hussein Ait-Lahcen"
