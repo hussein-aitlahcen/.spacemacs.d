@@ -31,7 +31,11 @@
      csharp
      scala
      pdf-tools
-     erc
+     (erc :variables
+          erc-nick "huss"
+          erc-prompt-for-password nil
+          erc-prompt-for-nickserv-password nil
+          erc-autojoin-channels-alist '(("freenode.net" "#haskell")))
      treemacs
      theming
      xkcd
@@ -78,12 +82,12 @@
   "Custom user configuration, doing all the displaying stuff after package are loaded."
   (user-config/email)
   (user-config/pretty)
-  (user-config/layout)
   (user-config/editing)
   (user-config/icons)
   (user-config/legalese)
   (user-config/csharp)
   (user-config/java)
+  (user-config/layout)
   (user-config/magit))
 
 (defun init/vars ()
@@ -105,7 +109,7 @@
                                :size 17
                                :weight normal
                                :width normal
-                               :powerline-scale 1.4)
+                               :powerline-scale 1)
    dotspacemacs-leader-key "SPC"
    dotspacemacs-emacs-command-key "SPC"
    dotspacemacs-ex-command-key ":"
@@ -211,7 +215,7 @@
   ;; Waiting emacs26
   ;; (global-display-line-numbers-mode t)
   (global-evil-mc-mode t)
-  (blink-cursor-mode t)
+  (blink-cursor-mode 0)
   (setq evil-insert-state-cursor '((bar . 4) "white")
         evil-normal-state-cursor '(box "white"))
   (setq evil-escape-key-sequence "dk")
