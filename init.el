@@ -214,15 +214,30 @@
   (setq message-directory "~/gmail"))
 
 (defun user-config/editing ()
-  ;; Waiting emacs26
-  ;; (global-display-line-numbers-mode t)
+  ;; Line numbers
+  (when (not (version<= emacs-version "26"))
+    (setq display-line-numbers-type 'absolute)
+    (custom-set-faces '(line-number ((t (:foreground "dim gray")))))
+    (add-hook 'prog-mode-hook 'display-line-numbers-mode)
+    (add-hook 'yaml-mode-hook 'display-line-numbers-mode))
+
+  ;; Cursor
   (global-evil-mc-mode t)
   (blink-cursor-mode 0)
   (setq evil-insert-state-cursor '((bar . 4) "white")
         evil-normal-state-cursor '(box "white"))
+
+  ;; Org-mode
+  (setq org-default-notes-file (concat org-directory "/notes.org"))
+
+  ;; Bindings
   (setq evil-escape-key-sequence "dk")
   (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
-  (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)(global-whitespace-mode t)
+  (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
+
+  ;; Display
+  (global-whitespace-mode t)
+  (setq whitespace-global-modes '(not erc-mode))
   (setq whitespace-line-column 500)
   (setq whitespace-display-mappings
         '((newline-mark 10 [182 10])
