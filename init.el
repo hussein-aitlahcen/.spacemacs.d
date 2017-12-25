@@ -35,6 +35,8 @@
           erc-nick "huss"
           erc-prompt-for-password nil
           erc-prompt-for-nickserv-password nil
+          erc-highlight-notice '("JOIN" "QUIT")
+          erc-hide-list '("PART" "QUIT")
           erc-autojoin-channels-alist '(("freenode.net" "#haskell")))
      treemacs
      theming
