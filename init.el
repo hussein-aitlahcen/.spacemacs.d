@@ -172,7 +172,8 @@
   (load-file "~/.spacemacs.d/magit-gerrit.el"))
 
 (defun user-config/layout ()
-  (golden-ratio-mode))
+  (golden-ratio-mode)
+  (setq golden-ratio-exclude-modes '(eshell-mode)))
 
 (defun user-config/email ()
   (add-hook 'gnus-message-setup-hook 'mml-secure-message-sign-pgpmime)
