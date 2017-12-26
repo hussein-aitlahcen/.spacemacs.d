@@ -49,7 +49,7 @@
      )
    dotspacemacs-additional-packages '(
                                       all-the-icons
-                                      spaceline-all-the-icons
+                                      ;; spaceline-all-the-icons
                                       centered-window-mode
                                       dracula-theme
                                       pretty-mode
@@ -64,17 +64,11 @@
 
 (defun dotspacemacs/init ()
   "Function that will be called before loading packages etc..."
-  ;; (setq theming-modifications
-  ;;       '((dracula
-  ;;          (default :background "#212121"))))
   (init/vars)
   (init/proxy))
 
 (defun dotspacemacs/user-init ()
   "Avoid custom-vars to be set in init.el file"
-  (setq-default dotspacemacs-persistent-server t)
-  (setq-default centered-window-mode t)
-  (setq-default spacemacs-show-trailing-whitespace t)
   (setq custom-file "~/.spacemacs.d/custom.el")
   (if (not (file-exists-p custom-file))
       (write-region "" nil custom-file)
@@ -111,7 +105,7 @@
                                :size 17
                                :weight normal
                                :width normal
-                               :powerline-scale 1)
+                               :powerline-scale 1.1)
    dotspacemacs-leader-key "SPC"
    dotspacemacs-emacs-command-key "SPC"
    dotspacemacs-ex-command-key ":"
@@ -134,7 +128,7 @@
    dotspacemacs-helm-position 'bottom
    dotspacemacs-helm-use-fuzzy 'always
    dotspacemacs-enable-paste-transient-state nil
-   dotspacemacs-which-key-delay 0.4
+   dotspacemacs-which-key-delay 0.6
    dotspacemacs-which-key-position 'bottom
    dotspacemacs-loading-progress-bar t
    dotspacemacs-fullscreen-at-startup nil
@@ -160,15 +154,10 @@
 
 (defun init/proxy ()
   "Load the proxy configuration if defined."
-  (if (file-exists-p "~/.spacemacs.d/proxy.el")
-      (load-file "~/.spacemacs.d/proxy.el")))
+  (when (file-exists-p "~/.spacemacs.d/proxy.el")
+    (load-file "~/.spacemacs.d/proxy.el")))
 
-(defun user-config/icons ()
-  (spaceline-all-the-icons-theme)
-  (spaceline-all-the-icons--setup-anzu)
-  (spaceline-all-the-icons--setup-git-ahead)
-  (spaceline-all-the-icons--setup-neotree)
-  (setq neo-theme 'icons))
+(defun user-config/icons ())
 
 (defun user-config/csharp ()
   (setq-default omnisharp-server-executable-path "~/omnisharp/run"))
@@ -183,9 +172,7 @@
   (load-file "~/.spacemacs.d/magit-gerrit.el"))
 
 (defun user-config/layout ()
-  ;; (require 'golden-ratio)
-  ;; (golden-ratio-mode 1)
-  )
+  (golden-ratio-mode))
 
 (defun user-config/email ()
   (add-hook 'gnus-message-setup-hook 'mml-secure-message-sign-pgpmime)
@@ -218,12 +205,13 @@
   (when (not (version<= emacs-version "26"))
     (setq display-line-numbers-type 'absolute)
     (custom-set-faces '(line-number ((t (:foreground "dim gray")))))
+    (custom-set-faces '(line-number-current-line ((t (:foreground "white")))))
     (add-hook 'prog-mode-hook 'display-line-numbers-mode)
     (add-hook 'yaml-mode-hook 'display-line-numbers-mode))
 
   ;; Cursor
   (global-evil-mc-mode t)
-  (blink-cursor-mode 0)
+  (blink-cursor-mode t)
   (setq evil-insert-state-cursor '((bar . 4) "white")
         evil-normal-state-cursor '(box "white"))
 
@@ -252,6 +240,7 @@
   (load-file "~/.spacemacs.d/pretty-fonts.el")
   (load-file "~/.spacemacs.d/pretty-eshell.el")
   (load-file "~/.spacemacs.d/pretty-magit.el")
+  (setq powerline-default-separator nil)
   (pretty-fonts-set-kwds
    '((pretty-fonts-fira-font prog-mode-hook org-mode-hook)))
   (pretty-fonts-set-fontsets
