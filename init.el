@@ -79,8 +79,8 @@
   "Custom user configuration, doing all the displaying stuff after package are loaded."
   (user-config/email)
   (user-config/pretty)
-  (user-config/editing)
   (user-config/icons)
+  (user-config/editing)
   (user-config/legalese)
   (user-config/csharp)
   (user-config/java)
@@ -158,7 +158,8 @@
   (when (file-exists-p "~/.spacemacs.d/proxy.el")
     (load-file "~/.spacemacs.d/proxy.el")))
 
-(defun user-config/icons ())
+(defun user-config/icons ()
+  (setq neo-theme 'icons))
 
 (defun user-config/csharp ()
   (setq-default omnisharp-server-executable-path "~/omnisharp/run"))
@@ -210,7 +211,7 @@
 
 (defun user-config/editing ()
   ;; Line numbers
-  (when (not (version<= emacs-version "26"))
+  (when (not (version< emacs-version "26"))
     (setq display-line-numbers-type 'absolute)
     (custom-set-faces '(line-number ((t (:foreground "dim gray")))))
     (custom-set-faces '(line-number-current-line ((t (:foreground "white")))))
@@ -239,6 +240,7 @@
   ;; Display
   (global-whitespace-mode t)
   (setq whitespace-global-modes '(not erc-mode))
+  (setq whitespace-empty nil)
   (setq whitespace-line-column 500)
   (setq whitespace-display-mappings
         '((newline-mark 10 [182 10])
@@ -253,23 +255,8 @@
   (load-file "~/.spacemacs.d/pretty-fonts.el")
   (load-file "~/.spacemacs.d/pretty-eshell.el")
   (load-file "~/.spacemacs.d/pretty-magit.el")
-  (setq powerline-default-separator nil)
-
   (pretty-fonts-set-kwds
-   '((pretty-fonts-fira-font prog-mode-hook org-mode-hook)))
-  (pretty-fonts-set-fontsets
-   '(("fontawesome"
-      #xf07c #xf0c9 #xf0c4 #xf0cb #xf017 #xf101)
-     ("all-the-icons"
-      #xe907 #xe928)
-     ("github-octicons"
-      #xf091 #xf059 #xf076 #xf075 #xe192  #xf016)
-     ("material icons"
-      #xe871 #xe918 #xe3e7
-      #xe3d0 #xe3d1 #xe3d2 #xe3d4)
-     ("Symbola"
-      #x1d54a #x2a02 #x2205 #x27fb #x27fc #x2299 #x1d54b #x1d53d
-      #x1d539 #x1d507 #x1d517))))
+   '((pretty-fonts-fira-font prog-mode-hook org-mode-hook))))
 
 (defun user-config/legalese ()
   (setq legalese-default-copyright "Hussein Ait-Lahcen")
