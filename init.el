@@ -175,6 +175,7 @@
 (defun user-config/layout ()
   (when (string= "*scratch*" (buffer-name))
     (spacemacs/switch-to-scratch-buffer))
+  (setq neo-theme 'icons)
   (golden-ratio-mode)
   (setq golden-ratio-exclude-modes '(eshell-mode)))
 
