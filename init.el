@@ -149,7 +149,7 @@
    dotspacemacs-search-tools '("ag" "pt" "ack" "grep")
    dotspacemacs-default-package-repository nil
    dotspacemacs-whitespace-cleanup nil
-   dotspacemacs-themes '(dracula t)
+   dotspacemacs-themes '(dracula)
    ))
 
 (defun init/proxy ()
