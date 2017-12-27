@@ -172,6 +172,8 @@
   (load-file "~/.spacemacs.d/magit-gerrit.el"))
 
 (defun user-config/layout ()
+  (when (string= "*scratch*" (buffer-name))
+    (spacemacs/switch-to-scratch-buffer))
   (golden-ratio-mode)
   (setq golden-ratio-exclude-modes '(eshell-mode)))
 
