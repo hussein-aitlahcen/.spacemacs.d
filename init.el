@@ -173,11 +173,14 @@
   (load-file "~/.spacemacs.d/magit-gerrit.el"))
 
 (defun user-config/layout ()
-  (when (string= "*scratch*" (buffer-name))
-    (spacemacs/switch-to-scratch-buffer))
-  (setq neo-theme 'icons)
+  ;; Golden ratio for windows
+  (setq golden-ratio-exclude-modes '(eshell-mode))
   (golden-ratio-mode)
-  (setq golden-ratio-exclude-modes '(eshell-mode)))
+  (setq powerline-default-separator nil)
+
+  ;; Skip startup buffer by switching
+  (when (string= "*scratch*" (buffer-name))
+    (spacemacs/switch-to-scratch-buffer)))
 
 (defun user-config/email ()
   (add-hook 'gnus-message-setup-hook 'mml-secure-message-sign-pgpmime)
