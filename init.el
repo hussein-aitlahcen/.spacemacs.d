@@ -6,7 +6,8 @@
    dotspacemacs-ask-for-lazy-installation nil
    dotspacemacs-configuration-layer-path '()
    dotspacemacs-configuration-layers
-   '(graphviz
+   '(python
+     graphviz
      docker
      haskell
      (haskell :variables haskell-enable-hindent-style "chris-done")
