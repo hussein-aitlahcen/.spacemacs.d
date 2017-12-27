@@ -39,7 +39,7 @@
           erc-highlight-notice '("JOIN" "QUIT")
           erc-hide-list '("PART" "QUIT")
           erc-autojoin-channels-alist '(("freenode.net" "#haskell")))
-     treemacs
+     neotree
      theming
      xkcd
      gnus
