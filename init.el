@@ -225,7 +225,8 @@
         evil-normal-state-cursor '(box "white"))
 
   ;; Org-mode
-  (setq org-default-notes-file (concat org-directory "/notes.org"))
+  (setq org-agenda-files (mapcar (lambda (d) (concat org-directory d)) '("/general.org" "/work.org" "/personnal.org" "/school.org")))
+  (setq org-default-notes-file (concat org-directory "/general.org"))
 
   ;; Bindings
   (setq evil-escape-key-sequence "dk")
@@ -250,6 +251,7 @@
   (load-file "~/.spacemacs.d/pretty-eshell.el")
   (load-file "~/.spacemacs.d/pretty-magit.el")
   (setq powerline-default-separator nil)
+
   (pretty-fonts-set-kwds
    '((pretty-fonts-fira-font prog-mode-hook org-mode-hook)))
   (pretty-fonts-set-fontsets
