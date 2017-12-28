@@ -177,7 +177,21 @@
   ;; Golden ratio for windows
   (setq golden-ratio-exclude-modes '(eshell-mode))
   (golden-ratio-mode)
-  (setq powerline-default-separator nil)
+  (set-face-background 'mode-line "dark green")
+  (set-face-foreground 'mode-line "yellow")
+  (set-face-background 'mode-line-inactive "black")
+  (set-face-foreground 'mode-line-inactive "white")
+  (setq evil-insert-state-cursor '((bar . 4) "white")
+        evil-normal-state-cursor '(box "white")
+        evil-visual-state-cursor '(box "black")
+        evil-iedit-state-cursor '(box "gold")
+        evil-lisp-state-cursor '(box "deep pink"))
+  (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
+  (set-face-attribute 'spaceline-evil-insert nil :background "royal blue" :foreground "yellow")
+  (set-face-attribute 'spaceline-evil-motion nil :background "red" :foreground "white")
+  (set-face-attribute 'spaceline-evil-normal nil :background "white" :foreground "black")
+  (set-face-attribute 'spaceline-evil-replace nil :background "black" :foreground "white")
+  (set-face-attribute 'spaceline-evil-visual nil :background "dark green" :foreground "white")
 
   ;; Skip startup buffer by switching
   (when (string= "*scratch*" (buffer-name))
@@ -225,8 +239,6 @@
   ;; Cursor
   (global-evil-mc-mode t)
   (blink-cursor-mode t)
-  (setq evil-insert-state-cursor '((bar . 4) "white")
-        evil-normal-state-cursor '(box "white"))
 
   ;; Org-mode
   (setq org-agenda-files (mapcar (lambda (d) (concat org-directory d)) '("/general.org" "/work.org" "/personnal.org" "/school.org")))
