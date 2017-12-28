@@ -183,6 +183,7 @@
   (set-face-foreground 'mode-line-inactive "white")
   (setq evil-insert-state-cursor '((bar . 4) "white")
         evil-normal-state-cursor '(box "white")
+        evil-replace-state-cursor '(hollow "white")
         evil-visual-state-cursor '(box "black")
         evil-iedit-state-cursor '(box "gold")
         evil-lisp-state-cursor '(box "deep pink"))
