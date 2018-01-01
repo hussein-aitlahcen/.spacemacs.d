@@ -217,8 +217,8 @@
         smtpmail-stream-type 'ssl
         smtpmail-smtp-server "smtp.gmail.com"
         smtpmail-smtp-service 465)
-  (setq gnus-message-archive-method '(nnimap "imap.gmail.com")
-        gnus-message-archive-group "[Gmail]/Sent Mail")
+  ;; (setq gnus-message-archive-method '(nnimap "imap.gmail.com")
+  ;;       archive-group "[Gmail]/Sent Mail")
   (setq nnml-directory "~/gmail")
   (setq message-directory "~/gmail"))
 
