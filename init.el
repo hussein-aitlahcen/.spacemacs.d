@@ -197,6 +197,7 @@
 
 (defun user-config/email ()
   (add-hook 'gnus-message-setup-hook 'mml-secure-message-sign-pgpmime)
+  (setq gnus-message-replysign t)
   (setq message-signature t)
   (setq mm-verify-option 'always)
   (setq gnus-always-read-dribble-file t)
