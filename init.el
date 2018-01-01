@@ -174,9 +174,6 @@
   (load-file "~/.spacemacs.d/magit-gerrit.el"))
 
 (defun user-config/layout ()
-  ;; Golden ratio for windows
-  (setq golden-ratio-exclude-modes '(eshell-mode))
-  (golden-ratio-mode)
   (set-face-background 'mode-line "dark green")
   (set-face-foreground 'mode-line "yellow")
   (set-face-background 'mode-line-inactive "black")
