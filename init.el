@@ -46,7 +46,7 @@
      (shell :variables
             shell-default-shell 'eshell
             shell-default-position 'bottom
-            shell-default-height 30)
+            shell-default-height 40)
      )
    dotspacemacs-additional-packages '(
                                       all-the-icons
