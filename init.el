@@ -186,11 +186,7 @@
   (set-face-attribute 'spaceline-evil-motion nil :background "red" :foreground "white")
   (set-face-attribute 'spaceline-evil-normal nil :background "white" :foreground "black")
   (set-face-attribute 'spaceline-evil-replace nil :background "black" :foreground "white")
-  (set-face-attribute 'spaceline-evil-visual nil :background "dark green" :foreground "white")
-
-  ;; Skip startup buffer by switching
-  (when (string= "*scratch*" (buffer-name))
-    (spacemacs/switch-to-scratch-buffer)))
+  (set-face-attribute 'spaceline-evil-visual nil :background "dark green" :foreground "white"))
 
 (defun user-config/email ()
   (add-hook 'gnus-message-setup-hook 'mml-secure-message-sign-pgpmime)
