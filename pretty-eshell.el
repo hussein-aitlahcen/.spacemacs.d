@@ -29,30 +29,19 @@
           eshell-prompt-string))
 
 (esh-section esh-dir
-             "\xf07c"  ;  (faicon folder)
+             "\xf114"  ; (faicon folder)
              (abbreviate-file-name (eshell/pwd))
-             '(:foreground "gold" :bold ultra-bold :underline t))
+             '(:foreground "yellow" :bold ultra-bold :underline t))
 
 (esh-section esh-git
-             "\xe907"  ;  (git icon)
+             "\xf09b"  ; (git icon)
              (magit-get-current-branch)
-             '(:foreground "pink"))
+             '(:foreground "cornflower blue"))
 
 (esh-section esh-clock
-             "\xf017"  ;  (clock icon)
+             "\xf253"  ; (clock icon)
              (format-time-string "%H:%M" (current-time))
              '(:foreground "forest green"))
-
-;; Below I implement a "prompt number" section
-(setq esh-prompt-num 0)
-(add-hook 'eshell-exit-hook (lambda () (setq esh-prompt-num 0)))
-(advice-add 'eshell-send-input :before
-            (lambda (&rest args) (setq esh-prompt-num (incf esh-prompt-num))))
-
-(esh-section esh-num
-             "\xf0c9"  ;  (list icon)
-             (number-to-string esh-prompt-num)
-             '(:foreground "brown"))
 
 ;; Separator between esh-sections
 (setq esh-sep " | ")  ; or " | "
@@ -61,15 +50,15 @@
 (setq esh-section-delim " ")
 
 ;; Eshell prompt header
-(setq esh-header "\n┌─")  ; or "\n┌─"
+(setq esh-header "\n")  ; or "\n┌─"
 
 ;; Eshell prompt regexp and string. Unless you are varying the prompt by eg.
 ;; your login, these can be the same.
-(setq eshell-prompt-regexp "└─> ")   ; or "└─> "
-(setq eshell-prompt-string "└─> ")   ; or "└─> "
+(setq eshell-prompt-regexp "\n\xf178 ")   ; or "└─> "
+(setq eshell-prompt-string "\n\xf178 ")   ; or "└─> "
 
 ;; Choose which eshell-funcs to enable
-(setq eshell-funcs (list esh-dir esh-git esh-clock esh-num))
+(setq eshell-funcs (list esh-dir esh-git esh-clock))
 
 ;; Enable the new eshell prompt
 (setq eshell-prompt-function 'esh-prompt-func)
