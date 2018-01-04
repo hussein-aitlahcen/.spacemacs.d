@@ -220,7 +220,7 @@
   (when (not (version< emacs-version "26"))
     (setq display-line-numbers-type 'absolute)
     (custom-set-faces '(line-number ((t (:foreground "dim gray")))))
-    (custom-set-faces '(line-number-current-line ((t (:background "gray11" :foreground "white")))))
+    (custom-set-faces '(line-number-current-line ((t (:foreground "white")))))
     (add-hook 'prog-mode-hook 'display-line-numbers-mode)
     (add-hook 'yaml-mode-hook 'display-line-numbers-mode))
 
