@@ -10,7 +10,7 @@
      graphviz
      docker
      haskell
-     (haskell :variables haskell-enable-hindent-style "chris-done")
+     (haskell :variables haskell-enable-hindent-style "fundamental")
      auto-completion (haskell :variables
                               haskell-completion-backend 'intero)
      (auto-completion :variables
