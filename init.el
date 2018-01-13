@@ -49,6 +49,7 @@
             shell-default-height 40)
      )
    dotspacemacs-additional-packages '(
+                                      pandoc-mode
                                       all-the-icons
                                       ;; spaceline-all-the-icons
                                       centered-window-mode
@@ -216,6 +217,9 @@
   (setq message-directory "~/gmail"))
 
 (defun user-config/editing ()
+  ;; Pandoc mode for markdown
+  (add-hook 'markdown-mode-hook 'pandoc-mode)
+
   ;; Line numbers
   (when (not (version< emacs-version "26"))
     (setq display-line-numbers-type 'absolute)
