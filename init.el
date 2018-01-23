@@ -31,6 +31,7 @@
      clojure
      csharp
      scala
+     rust
      pdf-tools
      (erc :variables
           erc-nick "huss"
