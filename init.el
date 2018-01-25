@@ -47,8 +47,7 @@
      (shell :variables
             shell-default-shell 'eshell
             shell-default-position 'bottom
-            shell-default-height 40)
-     )
+            shell-default-height 40))
    dotspacemacs-additional-packages '(
                                       pandoc-mode
                                       all-the-icons
@@ -59,8 +58,7 @@
                                       dash
                                       groovy-mode
                                       legalese
-                                      processing-mode
-                                      )
+                                      processing-mode)
    dotspacemacs-frozen-packages '()
    dotspacemacs-excluded-packages '(vi-tilde-fringe)
    dotspacemacs-install-packages 'used-only))
@@ -149,8 +147,7 @@
    dotspacemacs-search-tools '("ag" "pt" "ack" "grep")
    dotspacemacs-default-package-repository nil
    dotspacemacs-whitespace-cleanup nil
-   dotspacemacs-themes '(dracula)
-   ))
+   dotspacemacs-themes '(dracula)))
 
 (defun init/proxy ()
   "Load the proxy configuration if defined."
@@ -212,8 +209,6 @@
         smtpmail-stream-type 'ssl
         smtpmail-smtp-server "smtp.gmail.com"
         smtpmail-smtp-service 465)
-  ;; (setq gnus-message-archive-method '(nnimap "imap.gmail.com")
-  ;;       archive-group "[Gmail]/Sent Mail")
   (setq nnml-directory "~/gmail")
   (setq message-directory "~/gmail"))
 
@@ -244,22 +239,7 @@
   ;; Bindings
   (setq evil-escape-key-sequence "dk")
   (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
-  (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
-
-  ;; Display
-  ;; ;; (global-whitespace-mode t)
-  ;; (setq whitespace-global-modes '(not erc-mode))
-  ;; (setq whitespace-empty nil)
-  ;; (setq whitespace-line-column 500)
-  ;; (setq whitespace-display-mappings
-  ;;       '((newline-mark 10 [182 10])
-  ;;         (space-mark 32 [183] [46])))
-  ;; (set-face-foreground 'whitespace-newline "#505050")
-  ;; (set-face-foreground 'whitespace-tab "#505050")
-  ;; (set-face-background 'whitespace-tab 'nil)
-  ;; (set-face-foreground 'whitespace-space"#454545")
-  ;; (set-face-background 'whitespace-space 'nil)
-  )
+  (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line))
 
 (defun user-config/pretty ()
   (load-file "~/.spacemacs.d/pretty-fonts.el")
