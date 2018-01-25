@@ -51,7 +51,6 @@
    dotspacemacs-additional-packages '(
                                       pandoc-mode
                                       all-the-icons
-                                      ;; spaceline-all-the-icons
                                       centered-window-mode
                                       dracula-theme
                                       pretty-mode
