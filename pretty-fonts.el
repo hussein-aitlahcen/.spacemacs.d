@@ -34,7 +34,6 @@
                                 (symbol-value font-locks)))))))
 
 ;;; Fira Font
-
 (defconst pretty-fonts-fira-font
   '(;; OPERATORS
     ;; Pipes
