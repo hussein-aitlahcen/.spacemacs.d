@@ -19,11 +19,11 @@
      (unless ,NO-PROMPT?
        (add-to-list 'pretty-magit-prompt (concat ,WORD ": ")))))
 
-(pretty-magit "Feature" ? (:foreground "slate gray" :height 1.2))
-(pretty-magit "Add"     ? (:foreground "#375E97" :height 1.2))
-(pretty-magit "Fix"     ? (:foreground "#FB6542" :height 1.2))
-(pretty-magit "Clean"   ? (:foreground "#FFBB00" :height 1.2))
-(pretty-magit "Docs"    ? (:foreground "#3F681C" :height 1.2))
+(pretty-magit "feat"    ? (:foreground "slate gray" :height 1.2))
+(pretty-magit "add"     ? (:foreground "#375E97" :height 1.2))
+(pretty-magit "fix"     ? (:foreground "#FB6542" :height 1.2))
+(pretty-magit "refact"  ? (:foreground "#FFBB00" :height 1.2))
+(pretty-magit "docs"    ? (:foreground "#3F681C" :height 1.2))
 (pretty-magit "master"  ? (:height 1.2) t)
 (pretty-magit "origin"  ? (:height 1.2) t)
 
