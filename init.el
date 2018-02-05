@@ -106,7 +106,9 @@
    dotspacemacs-default-font '("DejaVue Sans Mono"
                                :size 15)
    dotspacemacs-leader-key "SPC"
-   dotspacemacs-emacs-command-macs-emacs-leader-key "M-m"
+   dotspacemacs-emacs-command-key "SPC"
+   dotspacemacs-ex-command-key ":"
+   dotspacemacs-emacs-leader-key "M-m"
    dotspacemacs-major-mode-leader-key ","
    dotspacemacs-major-mode-emacs-leader-key "C-M-m"
    dotspacemacs-distinguish-gui-tab nil
