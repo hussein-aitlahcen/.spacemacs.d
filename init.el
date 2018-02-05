@@ -12,7 +12,7 @@
      haskell
      (haskell :variables haskell-enable-hindent-style "fundamental")
      auto-completion (haskell :variables
-                              haskell-completion-backend 'intero)
+                              haskell-completion-backend 'dante)
      (auto-completion :variables
                       auto-completion-return-key-behavior 'complete
                       auto-completion-tab-key-behavior 'cycle
@@ -214,6 +214,16 @@
 (defun user-config/editing ()
   ;; Pandoc mode for markdown
   (add-hook 'markdown-mode-hook 'pandoc-mode)
+
+  ;; Haskell dante
+  (evil-leader/set-key-for-mode 'haskell-mode
+    "x" 'xref-find-definitions
+    "a" 'dante-type-at
+    "z" 'dante-info)
+  (add-hook 'dante-mode-hook 'flycheck-mode)
+  (add-hook 'dante-mode-hook '(lambda() (flycheck-add-next-checker
+                                         'haskell-dante
+                                         '(warning . haskell-hlint))))
 
   ;; Line numbers
   (when (not (version< emacs-version "26"))
