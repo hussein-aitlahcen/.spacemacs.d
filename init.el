@@ -21,6 +21,7 @@
                       auto-completion-private-snippets-directory nil)
      c-c++
      html
+     nixos
      javascript
      helm
      emacs-lisp
