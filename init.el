@@ -106,9 +106,7 @@
    dotspacemacs-default-font '("DejaVue Sans Mono"
                                :size 15)
    dotspacemacs-leader-key "SPC"
-   dotspacemacs-emacs-command-key "SPC"
-   dotspacemacs-ex-command-key ":"
-   dotspacemacs-emacs-leader-key "M-m"
+   dotspacemacs-emacs-command-macs-emacs-leader-key "M-m"
    dotspacemacs-major-mode-leader-key ","
    dotspacemacs-major-mode-emacs-leader-key "C-M-m"
    dotspacemacs-distinguish-gui-tab nil
@@ -138,6 +136,7 @@
    dotspacemacs-show-transient-state-title t
    dotspacemacs-show-transient-state-color-guide t
    dotspacemacs-mode-line-unicode-symbols nil
+   dotspacemacs-mode-line-theme 'vanilla
    dotspacemacs-smooth-scrolling nil
    dotspacemacs-line-numbers nil
    dotspacemacs-folding-method 'evil
@@ -171,7 +170,7 @@
   (load-file "~/.spacemacs.d/magit-gerrit.el"))
 
 (defun user-config/layout ()
-  (set-face-background 'mode-line "forest green")
+  (set-face-background 'mode-line "slate blue")
   (set-face-foreground 'mode-line "yellow")
   (set-face-background 'mode-line-inactive "black")
   (set-face-foreground 'mode-line-inactive "white")
@@ -180,7 +179,7 @@
         evil-replace-state-cursor '(hollow "white")
         evil-visual-state-cursor '(box "red")
         evil-iedit-state-cursor '(box "gold")
-        evil-lisp-state-cursor '(box "deep pink"))
+        evil-lisp-state-cursor '(box "deep pink")))
 
 (defun user-config/email ()
   (add-hook 'gnus-message-setup-hook 'mml-secure-message-sign-pgpmime)
