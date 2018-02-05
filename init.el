@@ -60,7 +60,8 @@
                                       legalese
                                       processing-mode)
    dotspacemacs-frozen-packages '()
-   dotspacemacs-excluded-packages '(vi-tilde-fringe)
+   dotspacemacs-excluded-packages '(vi-tilde-fringe
+                                    spaceline)
    dotspacemacs-install-packages 'used-only))
 
 (defun dotspacemacs/init ()
@@ -180,12 +181,6 @@
         evil-visual-state-cursor '(box "red")
         evil-iedit-state-cursor '(box "gold")
         evil-lisp-state-cursor '(box "deep pink"))
-  (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
-  (set-face-attribute 'spaceline-evil-insert nil :background "royal blue" :foreground "yellow")
-  (set-face-attribute 'spaceline-evil-motion nil :background "red" :foreground "white")
-  (set-face-attribute 'spaceline-evil-normal nil :background "white" :foreground "black")
-  (set-face-attribute 'spaceline-evil-replace nil :background "black" :foreground "white")
-  (set-face-attribute 'spaceline-evil-visual nil :background "dark green" :foreground "white"))
 
 (defun user-config/email ()
   (add-hook 'gnus-message-setup-hook 'mml-secure-message-sign-pgpmime)
