@@ -26,6 +26,7 @@
      helm
      emacs-lisp
      git
+     dash
      markdown
      org
      ansible
@@ -55,7 +56,6 @@
                                       centered-window-mode
                                       dracula-theme
                                       pretty-mode
-                                      dash
                                       groovy-mode
                                       legalese
                                       processing-mode)
