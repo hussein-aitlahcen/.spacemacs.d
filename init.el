@@ -5,55 +5,52 @@
    dotspacemacs-enable-lazy-installation 'unused
    dotspacemacs-ask-for-lazy-installation nil
    dotspacemacs-configuration-layer-path '()
-   dotspacemacs-configuration-layers
-   '(python
-     graphviz
-     docker
-     haskell
-     (haskell :variables haskell-enable-hindent-style "fundamental")
-     auto-completion (haskell :variables
-                              haskell-completion-backend 'dante)
-     (auto-completion :variables
-                      auto-completion-return-key-behavior 'complete
-                      auto-completion-tab-key-behavior 'cycle
-                      auto-completion-complete-with-key-sequence nil
-                      auto-completion-complete-with-key-sequence-delay 0.5
-                      auto-completion-private-snippets-directory nil)
-     c-c++
-     html
-     nixos
-     javascript
-     helm
-     emacs-lisp
-     git
-     dash
-     markdown
-     org
-     ansible
-     clojure
-     csharp
-     scala
-     rust
-     pdf-tools
-     (erc :variables
-          erc-nick "huss"
-          erc-prompt-for-password nil
-          erc-prompt-for-nickserv-password nil
-          erc-highlight-notice '("JOIN" "QUIT")
-          erc-hide-list '("PART" "QUIT")
-          erc-autojoin-channels-alist '(("freenode.net" "#haskell")))
-     neotree
-     theming
-     xkcd
-     gnus
-     (shell :variables
-            shell-default-shell 'eshell
-            shell-default-position 'bottom
-            shell-default-height 40))
-   dotspacemacs-additional-packages '(
-                                      pandoc-mode
+   dotspacemacs-configuration-layers '(python
+                                       graphviz
+                                       docker
+                                       haskell
+                                       c-c++
+                                       html
+                                       nixos
+                                       javascript
+                                       helm
+                                       emacs-lisp
+                                       git
+                                       dash
+                                       markdown
+                                       org
+                                       ansible
+                                       clojure
+                                       csharp
+                                       scala
+                                       rust
+                                       pdf-tools
+                                       neotree
+                                       theming
+                                       xkcd
+                                       gnus
+                                       (haskell :variables haskell-enable-hindent-style "fundamental")
+                                       auto-completion (haskell :variables
+                                                                haskell-completion-backend 'dante)
+                                       (auto-completion :variables
+                                                        auto-completion-return-key-behavior 'complete
+                                                        auto-completion-tab-key-behavior 'cycle
+                                                        auto-completion-complete-with-key-sequence nil
+                                                        auto-completion-complete-with-key-sequence-delay 0.5
+                                                        auto-completion-private-snippets-directory nil)
+                                       (erc :variables
+                                            erc-nick "huxx"
+                                            erc-prompt-for-password nil
+                                            erc-prompt-for-nickserv-password nil
+                                            erc-highlight-notice '("JOIN" "QUIT")
+                                            erc-hide-list '("PART" "QUIT")
+                                            erc-autojoin-channels-alist '(("freenode.net" "#haskell" "#nixos")))
+                                       (shell :variables
+                                              shell-default-shell 'eshell
+                                              shell-default-position 'bottom
+                                              shell-default-height 40))
+   dotspacemacs-additional-packages '(pandoc-mode
                                       all-the-icons
-                                      centered-window-mode
                                       dracula-theme
                                       pretty-mode
                                       groovy-mode
@@ -185,28 +182,25 @@
 
 (defun user-config/email ()
   (add-hook 'gnus-message-setup-hook 'mml-secure-message-sign-pgpmime)
-  (setq gnus-message-replysign t)
-  (setq message-signature t)
-  (setq mm-verify-option 'always)
-  (setq gnus-always-read-dribble-file t)
-  (setq epa-file-cache-passphrase-for-symmetric-encryption t)
-  (setq shr-color-visible-luminance-min 80)
-  (setq user-full-name "Hussein Ait-Lahcen"
-        user-mail-address "hussein.aitlahcen@gmail.com")
-  (setq gnus-secondary-select-methods
-        '(
-          (nnimap "gmail"
-                  (nnimap-address
-                   "imap.gmail.com")
-                  (nnimap-server-port 993)
-                  (nnimap-stream ssl))
-          ))
-  (setq message-send-mail-function 'smtpmail-send-it
+  (setq gnus-message-replysign t
+        message-signature t
+        mm-text-html-renderer 'shr
+        mm-verify-option 'always
+        gnus-always-read-dribble-file t
+        epa-file-cache-passphrase-for-symmetric-encryption t
+        shr-color-visible-luminance-min 80
+        user-full-name "Hussein Ait-Lahcen"
+        user-mail-address "hussein.aitlahcen@gmail.com"
+        gnus-secondary-select-methods '((nnimap "gmail"
+                                                (nnimap-address "imap.gmail.com")
+                                                (nnimap-server-port 993)
+                                                (nnimap-stream ssl)))
+        message-send-mail-function 'smtpmail-send-it
         smtpmail-stream-type 'ssl
         smtpmail-smtp-server "smtp.gmail.com"
-        smtpmail-smtp-service 465)
-  (setq nnml-directory "~/gmail")
-  (setq message-directory "~/gmail"))
+        smtpmail-smtp-service 465
+        nnml-directory "~/gmail"
+        message-directory "~/gmail"))
 
 (defun user-config/editing ()
   ;; Pandoc mode for markdown
@@ -239,8 +233,8 @@
   (blink-cursor-mode t)
 
   ;; Org-mode
-  (setq org-agenda-files (mapcar (lambda (d) (concat org-directory d)) '("/general.org" "/work.org" "/personnal.org" "/school.org")))
-  (setq org-default-notes-file (concat org-directory "/general.org"))
+  (setq org-agenda-files (mapcar (lambda (d) (concat org-directory d)) '("/general.org" "/work.org" "/personnal.org" "/school.org"))
+        org-default-notes-file (concat org-directory "/general.org"))
 
   ;; Bindings
   (setq evil-escape-key-sequence "dk")
@@ -255,5 +249,5 @@
    '((pretty-fonts-fira-font prog-mode-hook org-mode-hook))))
 
 (defun user-config/legalese ()
-  (setq legalese-default-copyright "Hussein Ait-Lahcen")
-  (setq legalese-default-author "Hussein Ait-Lahcen <hussein.aitlahcen@gmail.com>"))
+  (setq legalese-default-copyright "Hussein Ait-Lahcen"
+        legalese-default-author "Hussein Ait-Lahcen <hussein.aitlahcen@gmail.com>"))
