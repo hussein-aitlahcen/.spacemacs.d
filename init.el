@@ -70,6 +70,8 @@
 
 (defun dotspacemacs/user-init ()
   "Avoid custom-vars to be set in init.el file"
+  (push '("melpa-stable" . "stable.melpa.org/packages/") configuration-layer-elpa-archives)
+  (push '(ensime . "melpa-stable") package-pinned-packages)
   (setq custom-file "~/.spacemacs.d/custom.el")
   (if (not (file-exists-p custom-file))
       (write-region "" nil custom-file)
