@@ -210,6 +210,9 @@
   ;; Pandoc mode for markdown
   (add-hook 'markdown-mode-hook 'pandoc-mode)
 
+  ;; Golden ratio for the current window
+  (evil-leader/set-key "gr" 'golden-ratio)
+
   ;; Haskell dante
   (evil-leader/set-key-for-mode 'haskell-mode
     "x" 'xref-find-definitions
