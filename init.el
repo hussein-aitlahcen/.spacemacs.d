@@ -21,6 +21,10 @@
                                        ansible
                                        csharp
                                        scala
+                                       (scala :variables
+                                              scala-auto-start-ensime t
+                                              scala-auto-insert-asterisk-in-comments t
+                                              scala-enable-eldoc t)
                                        rust
                                        pdf-tools
                                        neotree
