@@ -38,7 +38,7 @@
                                                         auto-completion-return-key-behavior 'complete
                                                         auto-completion-tab-key-behavior 'cycle
                                                         auto-completion-complete-with-key-sequence nil
-                                                        auto-completion-complete-with-key-sequence-delay 0.5
+                                                        auto-completion-complete-with-key-sequence-delay 0.6
                                                         auto-completion-private-snippets-directory nil)
                                        (erc :variables
                                             erc-nick "huxx"
