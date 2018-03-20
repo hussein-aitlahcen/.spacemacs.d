@@ -220,6 +220,7 @@
     (custom-set-faces '(line-number ((t (:foreground "dim gray")))))
     (custom-set-faces '(line-number-current-line ((t (:background "gray12" :foreground "white")))))
     (add-hook 'prog-mode-hook 'display-line-numbers-mode)
+    (add-hook 'org-mode-hook 'display-line-numbers-mode)
     (add-hook 'yaml-mode-hook 'display-line-numbers-mode))
 
   ;; Auto complete disabled in eshell
