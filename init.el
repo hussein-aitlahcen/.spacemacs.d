@@ -6,7 +6,6 @@
    dotspacemacs-ask-for-lazy-installation nil
    dotspacemacs-configuration-layer-path '()
    dotspacemacs-configuration-layers '(python
-                                       graphviz
                                        docker
                                        haskell
                                        c-c++
@@ -20,7 +19,6 @@
                                        markdown
                                        org
                                        ansible
-                                       clojure
                                        csharp
                                        scala
                                        rust
