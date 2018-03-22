@@ -210,6 +210,11 @@
   ;; Pandoc mode for markdown
   (add-hook 'markdown-mode-hook 'pandoc-mode)
 
+  ;; Avoid conflicting M-k/j with I3
+  (evil-define-key 'normal 'git-rebase-mode-map
+    "K" 'git-rebase-move-line-up
+    "J" 'git-rebase-move-line-down)
+
   ;; Golden ratio for the current window
   (evil-leader/set-key "gr" 'golden-ratio)
 
