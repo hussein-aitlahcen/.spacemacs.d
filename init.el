@@ -211,7 +211,7 @@
   (add-hook 'markdown-mode-hook 'pandoc-mode)
 
   ;; Avoid conflicting M-k/j with I3
-  (evil-define-key 'normal 'git-rebase-mode-map
+  (evil-define-key 'git-rebase-mode 'git-rebase-mode-map
     "K" 'git-rebase-move-line-up
     "J" 'git-rebase-move-line-down)
 
