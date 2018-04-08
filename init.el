@@ -5,7 +5,9 @@
    dotspacemacs-enable-lazy-installation 'unused
    dotspacemacs-ask-for-lazy-installation nil
    dotspacemacs-configuration-layer-path '()
-   dotspacemacs-configuration-layers '(python
+   dotspacemacs-configuration-layers '(purescript
+                                       octave
+                                       python
                                        docker
                                        haskell
                                        c-c++
