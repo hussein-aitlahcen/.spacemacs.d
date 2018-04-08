@@ -262,6 +262,7 @@
   (load-file "~/.spacemacs.d/pretty-magit.el")
   (require 'pretty-mode)
   (add-hook 'haskell-mode-hook 'turn-on-pretty-mode)
+  (add-hook 'purescript-mode-hook 'turn-on-pretty-mode)
   (pretty-deactivate-groups '(:equality :ordering :ordering-double :ordering-triple :arrows :arrows-twoheaded :punctuation :logic :nil))
   (pretty-activate-groups
    '(:arithmetic-nary :undefined :sqrt :greek :sets :quantifiers))
