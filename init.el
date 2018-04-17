@@ -221,11 +221,14 @@
   ;; Golden ratio for the current window
   (evil-leader/set-key "gr" 'golden-ratio)
 
-  ;; Haskell dante
+  ;; Haskell dante / Purescript psc
   (evil-leader/set-key-for-mode 'haskell-mode
     "x" 'xref-find-definitions
     "a" 'dante-type-at
     "z" 'dante-info)
+  (evil-leader/set-key-for-mode 'purescript-mode
+    "a" 'psc-ide-show-type)
+
   (add-hook 'dante-mode-hook 'flycheck-mode)
   (add-hook 'dante-mode-hook '(lambda() (flycheck-add-next-checker
                                          'haskell-dante
