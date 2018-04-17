@@ -6,6 +6,7 @@
    dotspacemacs-ask-for-lazy-installation nil
    dotspacemacs-configuration-layer-path '()
    dotspacemacs-configuration-layers '(purescript
+                                       idris
                                        octave
                                        python
                                        docker
