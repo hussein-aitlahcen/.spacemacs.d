@@ -180,6 +180,7 @@
   (set-face-foreground 'mode-line "yellow")
   (set-face-background 'mode-line-inactive "black")
   (set-face-foreground 'mode-line-inactive "white")
+  (setq projectile-mode-line "Projectile")
   (setq evil-insert-state-cursor '((bar . 4) "white")
         evil-normal-state-cursor '(box "white")
         evil-replace-state-cursor '(hollow "white")
