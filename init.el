@@ -7,6 +7,7 @@
    dotspacemacs-configuration-layer-path '()
    dotspacemacs-configuration-layers '(purescript
                                        idris
+                                       shaders
                                        octave
                                        python
                                        docker
