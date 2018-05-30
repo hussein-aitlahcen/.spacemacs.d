@@ -55,7 +55,8 @@
                                               shell-default-shell 'eshell
                                               shell-default-position 'bottom
                                               shell-default-height 40))
-   dotspacemacs-additional-packages '(pandoc-mode
+   dotspacemacs-additional-packages '(magithub
+                                      pandoc-mode
                                       all-the-icons
                                       dracula-theme
                                       pretty-mode
@@ -83,6 +84,7 @@
 
 (defun dotspacemacs/user-config ()
   "Custom user configuration, doing all the displaying stuff after package are loaded."
+  (user-config/magithub)
   (user-config/email)
   (user-config/pretty)
   (user-config/icons)
@@ -160,6 +162,11 @@
   "Load the proxy configuration if defined."
   (when (file-exists-p "~/.spacemacs.d/proxy.el")
     (load-file "~/.spacemacs.d/proxy.el")))
+
+(defun user-config/magithub ()
+  (use-package magithub
+    :after magit
+    :config (magithub-feature-autoinject t)))
 
 (defun user-config/icons ()
   (setq neo-theme 'icons))
