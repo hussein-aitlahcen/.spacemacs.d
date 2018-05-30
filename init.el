@@ -5,7 +5,8 @@
    dotspacemacs-enable-lazy-installation 'unused
    dotspacemacs-ask-for-lazy-installation nil
    dotspacemacs-configuration-layer-path '()
-   dotspacemacs-configuration-layers '(purescript
+   dotspacemacs-configuration-layers '(twitter
+                                       purescript
                                        idris
                                        shaders
                                        octave
