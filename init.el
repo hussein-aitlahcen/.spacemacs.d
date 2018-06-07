@@ -8,7 +8,6 @@
    dotspacemacs-configuration-layers '(twitter
                                        purescript
                                        idris
-                                       shaders
                                        octave
                                        python
                                        docker
