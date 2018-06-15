@@ -35,9 +35,10 @@
                                        theming
                                        xkcd
                                        gnus
-                                       (haskell :variables haskell-enable-hindent-style "fundamental")
-                                       auto-completion (haskell :variables
-                                                                haskell-completion-backend 'dante)
+                                       lsp
+                                       (haskell :variables haskell-enable-hindent-style "fundamental"
+                                                haskell-completion-backend 'ghci
+                                                haskell-process-type 'stack-ghci)
                                        (auto-completion :variables
                                                         auto-completion-return-key-behavior 'complete
                                                         auto-completion-tab-key-behavior 'cycle
@@ -62,7 +63,8 @@
                                       pretty-mode
                                       groovy-mode
                                       legalese
-                                      processing-mode)
+                                      processing-mode
+                                      (lsp-haskell :location (recipe :fetcher github :repo "emacs-lsp/lsp-haskell")))
    dotspacemacs-frozen-packages '()
    dotspacemacs-excluded-packages '(vi-tilde-fringe
                                     spaceline)
@@ -231,17 +233,20 @@
   (evil-leader/set-key "gr" 'golden-ratio)
 
   ;; Haskell dante / Purescript psc
-  (evil-leader/set-key-for-mode 'haskell-mode
-    "x" 'xref-find-definitions
-    "a" 'dante-type-at
-    "z" 'dante-info)
-  (evil-leader/set-key-for-mode 'purescript-mode
-    "a" 'psc-ide-show-type)
+  (require 'lsp-haskell)
+  (add-hook 'haskell-mode-hook #'lsp-haskell-enable)
+  (add-hook 'haskell-mode-hook 'flycheck-mode)
+  ;; (evil-leader/set-key-for-mode 'haskell-mode
+  ;;   "x" 'xref-find-definitions
+  ;;   "a" 'dante-type-at
+  ;;   "z" 'dante-info)
+  ;; (evil-leader/set-key-for-mode 'purescript-mode
+  ;;   "a" 'psc-ide-show-type)
 
-  (add-hook 'dante-mode-hook 'flycheck-mode)
-  (add-hook 'dante-mode-hook '(lambda() (flycheck-add-next-checker
-                                         'haskell-dante
-                                         '(warning . haskell-hlint))))
+  ;; (add-hook 'dante-mode-hook 'flycheck-mode)
+  ;; (add-hook 'dante-mode-hook '(lambda() (flycheck-add-next-checker
+  ;;                                        'haskell-dante
+  ;;                                        '(warning . haskell-hlint))))
 
   ;; Line numbers
   (when (not (version< emacs-version "26"))
