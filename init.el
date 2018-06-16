@@ -234,19 +234,17 @@
 
   ;; Haskell dante / Purescript psc
   (require 'lsp-haskell)
-  (add-hook 'haskell-mode-hook #'lsp-haskell-enable)
+  (add-hook 'haskell-mode-hook  (lambda ()
+                                  ;; from https://github.com/michalrus/dotfiles/blob/bdc726eb8847a9f70275587001d37fb489a9b059/dotfiles/emacs/.emacs.d/init.d/080-proglang-haskell.el#L32-L34
+                                  ;; If there’s a 'hie.sh' defined locally by a project
+                                  ;; (e.g. to run HIE in a nix-shell), use it…
+                                  (let ((hie-directory (locate-dominating-file default-directory "shell.nix")))
+                                    (when hie-directory
+                                      (setq-local lsp-haskell-process-path-hie
+                                                  (concat "exec nix run -f " (expand-file-name "shell.nix" hie-directory) " -c hie"))))
+                                  ;; … and only then setup the LSP.
+                                  (lsp-haskell-enable)))
   (add-hook 'haskell-mode-hook 'flycheck-mode)
-  ;; (evil-leader/set-key-for-mode 'haskell-mode
-  ;;   "x" 'xref-find-definitions
-  ;;   "a" 'dante-type-at
-  ;;   "z" 'dante-info)
-  ;; (evil-leader/set-key-for-mode 'purescript-mode
-  ;;   "a" 'psc-ide-show-type)
-
-  ;; (add-hook 'dante-mode-hook 'flycheck-mode)
-  ;; (add-hook 'dante-mode-hook '(lambda() (flycheck-add-next-checker
-  ;;                                        'haskell-dante
-  ;;                                        '(warning . haskell-hlint))))
 
   ;; Line numbers
   (when (not (version< emacs-version "26"))
