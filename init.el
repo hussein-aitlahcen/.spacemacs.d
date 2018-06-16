@@ -238,10 +238,9 @@
                                   ;; from https://github.com/michalrus/dotfiles/blob/bdc726eb8847a9f70275587001d37fb489a9b059/dotfiles/emacs/.emacs.d/init.d/080-proglang-haskell.el#L32-L34
                                   ;; If there’s a 'hie.sh' defined locally by a project
                                   ;; (e.g. to run HIE in a nix-shell), use it…
-                                  (let ((hie-directory (locate-dominating-file default-directory "shell.nix")))
+                                  (let ((hie-directory (locate-dominating-file default-directory "hie.sh")))
                                     (when hie-directory
-                                      (setq-local lsp-haskell-process-path-hie
-                                                  (concat "exec nix run -f " (expand-file-name "shell.nix" hie-directory) " -c hie"))))
+                                      (setq-local lsp-haskell-process-path-hie (expand-file-name "hie.sh" hie-directory))))
                                   ;; … and only then setup the LSP.
                                   (lsp-haskell-enable)))
   (add-hook 'haskell-mode-hook 'flycheck-mode)
