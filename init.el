@@ -232,15 +232,16 @@
   ;; Golden ratio for the current window
   (evil-leader/set-key "gr" 'golden-ratio)
 
-  ;; Haskell dante / Purescript psc
+  ;; Haskell hie
   (require 'lsp-haskell)
   (add-hook 'haskell-mode-hook  (lambda ()
                                   ;; from https://github.com/michalrus/dotfiles/blob/bdc726eb8847a9f70275587001d37fb489a9b059/dotfiles/emacs/.emacs.d/init.d/080-proglang-haskell.el#L32-L34
+                                  (user-config/sandbox-nix "hie --lsp -d -l /tmp/hie.log")
                                   ;; If there’s a 'hie.sh' defined locally by a project
                                   ;; (e.g. to run HIE in a nix-shell), use it…
-                                  (let ((hie-directory (locate-dominating-file default-directory "hie.sh")))
-                                    (when hie-directory
-                                      (setq-local lsp-haskell-process-path-hie (expand-file-name "hie.sh" hie-directory))))
+                                  ;; (let (hie-directory (locate-dominating-file default-directory "hie.sh"))
+                                  ;;   (when hie-directory
+                                  ;;     (setq-local lsp-haskell-process-path-hie (expand-file-name "hie.sh" hie-directory))))
                                   ;; … and only then setup the LSP.
                                   (lsp-haskell-enable)))
   (add-hook 'haskell-mode-hook 'flycheck-mode)
@@ -287,3 +288,12 @@
 (defun user-config/legalese ()
   (setq legalese-default-copyright "Hussein Ait-Lahcen"
         legalese-default-author "Hussein Ait-Lahcen <hussein.aitlahcen@gmail.com>"))
+
+(defun user-config/sandbox-nix (command)
+  "Sandbox a command inside nix-shell if required"
+  (let (nix-file "shell.nix"))
+  (let (nix-path "NIX_PATH=\"nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs\""))
+  (let (nix-file-directory (locate-dominating-file default-directory nix-file)))
+  (when nix-file-directory
+    (let (nix-shell-path (expand-file-name nix-file nix-file-directory))
+      string-join '(nix-path "nix-shell -f" nix-shell-path "--command" "\"" command "\"") " ")))
