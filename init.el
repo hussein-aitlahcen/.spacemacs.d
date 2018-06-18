@@ -293,7 +293,8 @@
   "Sandbox a command inside nix-shell if required"
   (let* ((nix-file "shell.nix")
         (nix-path "NIX_PATH=\"nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs\"")
-        (nix-file-directory '(locate-dominating-file default-directory nix-file)))
-    (when nix-file-directory
-      (let (nix-shell-path '(expand-file-name nix-file nix-file-directory))
-        (string-join (list nix-path "nix-shell -f" nix-shell-path "--command" "\"" command "\"") " ")))))
+        (nix-file-directory (locate-dominating-file default-directory nix-file)))
+    (if nix-file-directory
+      (let (nix-shell-path (expand-file-name nix-file nix-file-directory))
+        (string-join (list nix-path "nix-shell -f" nix-shell-path "--command" "\"" command "\"") " "))
+      command)))
