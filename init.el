@@ -292,5 +292,6 @@
       (let* ((nix-shell-path (expand-file-name nix-file nix-file-directory))
              (sandbox-script (make-temp-file "nix-sandbox")))
         (write-region (string-join (list nix-path "nix-shell" nix-shell-path "--command" "\"" command "\"") " ") nil sandbox-script)
+        (shell-command (string-join (list "chmod u+x" sandbox-script) " "))
         sandbox-script)
       command)))
