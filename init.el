@@ -291,7 +291,7 @@
 
 (defun user-config/sandbox-nix (command)
   "Sandbox a command inside nix-shell if required"
-  (let ((nix-file "shell.nix")
+  (let* ((nix-file "shell.nix")
         (nix-path "NIX_PATH=\"nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs\"")
         (nix-file-directory (locate-dominating-file default-directory nix-file)))
     (when nix-file-directory
