@@ -290,7 +290,7 @@
          (nix-file-directory (locate-dominating-file default-directory nix-file)))
     (if nix-file-directory
         (let* ((nix-shell-path (expand-file-name nix-file nix-file-directory))
-               (extended-command (string-join (list nix-path "nix-shell" nix-shell-path "--command" "\"exec " command "\"") " "))
+               (extended-command (string-join (list nix-path "exec nix-shell" nix-shell-path "--command" "\"" command "\"") " "))
                (sandbox-script (make-temp-file "nix-sandbox")))
           (write-region (string-join (list "#!/usr/bin/env bash" extended-command) "\n")  nil sandbox-script)
           (shell-command (string-join (list "chmod u+x" sandbox-script) " "))
