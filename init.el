@@ -286,11 +286,11 @@
 (defun user-config/sandbox-nix (command)
   "Sandbox a command inside nix-shell if required"
   (let* ((nix-file "shell.nix")
-        (nix-path "NIX_PATH=\"nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs\"")
-        (nix-file-directory (locate-dominating-file default-directory nix-file)))
+         (nix-path "NIX_PATH=\"nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs\"")
+         (nix-file-directory (locate-dominating-file default-directory nix-file)))
     (if nix-file-directory
         (let* ((nix-shell-path (expand-file-name nix-file nix-file-directory))
-               (extended-command (string-join (list nix-path "nix-shell" nix-shell-path "--command" "\"" command "\"") " "))
+               (extended-command (string-join (list nix-path "nix-shell" nix-shell-path "--command" "\"exec " command "\"") " "))
                (sandbox-script (make-temp-file "nix-sandbox")))
           (write-region (string-join (list "#!/usr/bin/env bash" extended-command) "\n")  nil sandbox-script)
           (shell-command (string-join (list "chmod u+x" sandbox-script) " "))
