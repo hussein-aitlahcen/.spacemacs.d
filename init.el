@@ -260,6 +260,7 @@
   (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line))
 
 (defun user-config/pretty ()
+  (load-file "~/.spacemacs.d/pretty-fonts.el")
   (require 'pretty-mode)
   (add-hook 'haskell-mode-hook 'turn-on-pretty-mode)
   (add-hook 'purescript-mode-hook 'turn-on-pretty-mode)
