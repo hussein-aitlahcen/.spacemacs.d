@@ -30,7 +30,7 @@
                                               scala-auto-insert-asterisk-in-comments t
                                               scala-enable-eldoc t)
                                        rust
-                                       pdf-tools
+                                       pdf
                                        neotree
                                        theming
                                        xkcd
