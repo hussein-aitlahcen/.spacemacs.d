@@ -56,8 +56,7 @@
                                               shell-default-shell 'eshell
                                               shell-default-position 'bottom
                                               shell-default-height 40))
-   dotspacemacs-additional-packages '(magithub
-                                      pandoc-mode
+   dotspacemacs-additional-packages '(pandoc-mode
                                       all-the-icons
                                       dracula-theme
                                       pretty-mode
@@ -86,7 +85,6 @@
 
 (defun dotspacemacs/user-config ()
   "Custom user configuration, doing all the displaying stuff after package are loaded."
-  (user-config/magithub)
   (user-config/email)
   (user-config/pretty)
   (user-config/icons)
@@ -165,11 +163,6 @@
   (when (file-exists-p "~/.spacemacs.d/proxy.el")
     (load-file "~/.spacemacs.d/proxy.el")))
 
-(defun user-config/magithub ()
-  (use-package magithub
-    :after magit
-    :config (magithub-feature-autoinject t)))
-
 (defun user-config/icons ()
   (setq neo-theme 'icons))
 
@@ -236,7 +229,7 @@
   (require 'lsp-haskell)
   (add-hook 'haskell-mode-hook  (lambda ()
                                   ;; from https://github.com/michalrus/dotfiles/blob/bdc726eb8847a9f70275587001d37fb489a9b059/dotfiles/emacs/.emacs.d/init.d/080-proglang-haskell.el#L32-L34
-                                  (setq-local lsp-haskell-process-path-hie (user-config/sandbox-nix "hie --lsp -d -l /tmp/hie.log"))
+                                  (setq-local lsp-haskell-process-path-hie (user-config/nixify-command "hie --lsp -d -l /tmp/hie.log"))
                                   (lsp-haskell-enable)))
   (add-hook 'haskell-mode-hook 'flycheck-mode)
 
@@ -267,9 +260,6 @@
   (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line))
 
 (defun user-config/pretty ()
-  (load-file "~/.spacemacs.d/pretty-fonts.el")
-  (load-file "~/.spacemacs.d/pretty-eshell.el")
-  (load-file "~/.spacemacs.d/pretty-magit.el")
   (require 'pretty-mode)
   (add-hook 'haskell-mode-hook 'turn-on-pretty-mode)
   (add-hook 'purescript-mode-hook 'turn-on-pretty-mode)
@@ -283,16 +273,17 @@
   (setq legalese-default-copyright "Hussein Ait-Lahcen"
         legalese-default-author "Hussein Ait-Lahcen <hussein.aitlahcen@gmail.com>"))
 
-(defun user-config/sandbox-nix (command)
+(defun user-config/nixify-command (command)
   "Sandbox a command inside nix-shell if required"
   (let* ((nix-file "shell.nix")
          (nix-path "NIX_PATH=\"nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs\"")
-         (nix-file-directory (locate-dominating-file default-directory nix-file)))
-    (if nix-file-directory
-        (let* ((nix-shell-path (expand-file-name nix-file nix-file-directory))
-               (extended-command (string-join (list nix-path "exec nix-shell" nix-shell-path "--command" "\"" command "\"") " "))
-               (sandbox-script (make-temp-file "nix-sandbox")))
-          (write-region (string-join (list "#!/usr/bin/env bash" extended-command) "\n")  nil sandbox-script)
-          (shell-command (string-join (list "chmod u+x" sandbox-script) " "))
-          sandbox-script)
-      command)))
+         (nix-file-directory (locate-dominating-file default-directory nix-file))
+         (sandbox-script (make-temp-file "emacs-sandbox-"))
+         (sandbox-script-content
+          (if nix-file-directory
+              (let ((nix-shell-path (expand-file-name nix-file nix-file-directory)))
+                (string-join (list nix-path "exec" "nix-shell" nix-shell-path "--command" "\"" command "\"") " "))
+            (string-join (list "exec" command) " "))))
+    (write-region (string-join (list "#!/usr/bin/env bash" sandbox-script-content) "\n") nil sandbox-script)
+    (shell-command (string-join (list "chmod u+x" sandbox-script) " "))
+    sandbox-script))
