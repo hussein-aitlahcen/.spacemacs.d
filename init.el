@@ -216,10 +216,6 @@
     (add-hook 'org-mode-hook 'display-line-numbers-mode)
     (add-hook 'yaml-mode-hook 'display-line-numbers-mode))
 
-  ;; Auto complete disabled in eshell
-  (spacemacs|disable-company eshell-mode)
-  (spacemacs|disable-company erc-mode)
-
   ;; Cursor
   (global-evil-mc-mode t)
   (blink-cursor-mode t)
