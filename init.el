@@ -25,10 +25,6 @@
                                        ansible
                                        csharp
                                        scala
-                                       (scala :variables
-                                              scala-auto-start-ensime t
-                                              scala-auto-insert-asterisk-in-comments t
-                                              scala-enable-eldoc t)
                                        rust
                                        pdf
                                        neotree
@@ -39,19 +35,6 @@
                                        (haskell :variables haskell-enable-hindent-style "fundamental"
                                                 haskell-completion-backend 'ghci
                                                 haskell-process-type 'stack-ghci)
-                                       (auto-completion :variables
-                                                        auto-completion-return-key-behavior 'complete
-                                                        auto-completion-tab-key-behavior 'cycle
-                                                        auto-completion-complete-with-key-sequence nil
-                                                        auto-completion-complete-with-key-sequence-delay 0.1
-                                                        auto-completion-private-snippets-directory nil)
-                                       (erc :variables
-                                            erc-nick "huxx"
-                                            erc-prompt-for-password nil
-                                            erc-prompt-for-nickserv-password nil
-                                            erc-highlight-notice '("JOIN" "QUIT")
-                                            erc-hide-list '("PART" "QUIT")
-                                            erc-autojoin-channels-alist '(("freenode.net" "#haskell" "#nixos")))
                                        (shell :variables
                                               shell-default-shell 'eshell
                                               shell-default-position 'bottom
@@ -165,15 +148,6 @@
 
 (defun user-config/icons ()
   (setq neo-theme 'icons))
-
-(defun user-config/csharp ()
-  (setq-default omnisharp-server-executable-path "~/omnisharp/run"))
-
-(defun user-config/java ()
-  (setq eclim-eclipse-dirs '("~/eclipse")
-        eclim-executable "~/eclipse/eclim"
-        eclimd-executable "~/eclipse/eclimd"
-        eclimd-wait-for-process t))
 
 (defun user-config/magit ()
   (load-file "~/.spacemacs.d/magit-gerrit.el"))
