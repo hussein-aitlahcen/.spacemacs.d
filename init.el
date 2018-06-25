@@ -73,8 +73,6 @@
   (user-config/icons)
   (user-config/editing)
   (user-config/legalese)
-  (user-config/csharp)
-  (user-config/java)
   (user-config/layout)
   (user-config/magit))
 
