@@ -205,9 +205,6 @@
                                   (lsp-haskell-enable)))
   (add-hook 'haskell-mode-hook 'flycheck-mode)
 
-  (evil-define-key 'haskell-mode 'haskell-mode-map
-    "d" 'xref-find-definitions)
-
   ;; Line numbers
   (when (not (version< emacs-version "26"))
     (setq display-line-numbers-type 'absolute)
