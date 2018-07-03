@@ -32,7 +32,8 @@
                                        xkcd
                                        gnus
                                        lsp
-                                       (haskell :variables haskell-enable-hindent-style "fundamental"
+                                       (haskell :variables
+                                                haskell-enable-hindent-style "fundamental"
                                                 haskell-completion-backend 'ghci
                                                 haskell-process-type 'stack-ghci)
                                        (shell :variables
