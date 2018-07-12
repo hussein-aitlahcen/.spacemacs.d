@@ -41,6 +41,7 @@
                                               shell-default-position 'bottom
                                               shell-default-height 40))
    dotspacemacs-additional-packages '(pandoc-mode
+                                      dhall-mode
                                       all-the-icons
                                       dracula-theme
                                       pretty-mode
