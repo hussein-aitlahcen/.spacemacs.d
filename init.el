@@ -7,6 +7,7 @@
    dotspacemacs-configuration-layer-path '()
    dotspacemacs-configuration-layers '(twitter
                                        purescript
+				       agda
                                        idris
                                        octave
                                        python
