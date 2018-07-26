@@ -204,7 +204,7 @@
   (require 'lsp-haskell)
   (add-hook 'haskell-mode-hook  (lambda ()
                                   ;; from https://github.com/michalrus/dotfiles/blob/bdc726eb8847a9f70275587001d37fb489a9b059/dotfiles/emacs/.emacs.d/init.d/080-proglang-haskell.el#L32-L34
-                                  (setq-local lsp-haskell-process-path-hie (user-config/nixify-command "hie --lsp -d -l /tmp/hie.log"))
+                                  (setq-local lsp-haskell-process-path-hie (user-config/nixify-command "hie --lsp -l /tmp/hie.log"))
                                   (lsp-haskell-enable)))
   (add-hook 'haskell-mode-hook 'flycheck-mode)
 
