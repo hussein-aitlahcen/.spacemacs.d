@@ -213,8 +213,9 @@
     (setq display-line-numbers-type 'absolute)
     (custom-set-faces '(line-number ((t (:foreground "dim gray")))))
     (custom-set-faces '(line-number-current-line ((t (:background "gray12" :foreground "white")))))
-    (global-display-line-numbers-mode))
-
+    (add-hook 'prog-mode-hook 'display-line-numbers-mode)
+    (add-hook 'org-mode-hook 'display-line-numbers-mode)
+    (add-hook 'yaml-mode-hook 'display-line-numbers-mode))
   ;; Cursor
   (global-evil-mc-mode t)
   (blink-cursor-mode t)
