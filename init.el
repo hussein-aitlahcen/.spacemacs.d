@@ -163,10 +163,10 @@
 
 (defun user-config/layout ()
   (setq projectile-mode-line "Projectile")
-  (setq evil-insert-state-cursor '((bar . 4) "orange")
-        evil-normal-state-cursor '(box "yellow")
+  (setq evil-insert-state-cursor '((bar . 4) "dark green")
+        evil-normal-state-cursor '(box "red")
         evil-replace-state-cursor '(hollow "blue")
-        evil-visual-state-cursor '(box "red")
+        evil-visual-state-cursor '(box "black")
         evil-iedit-state-cursor '(box "gold")
         evil-lisp-state-cursor '(box "deep pink")))
 
