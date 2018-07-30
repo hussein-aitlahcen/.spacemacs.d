@@ -7,7 +7,8 @@
    dotspacemacs-configuration-layer-path '()
    dotspacemacs-configuration-layers '(twitter
                                        purescript
-				       agda
+				                               agda
+                                       themes-megapack
                                        idris
                                        octave
                                        python
@@ -140,7 +141,7 @@
    dotspacemacs-search-tools '("ag" "pt" "ack" "grep")
    dotspacemacs-default-package-repository nil
    dotspacemacs-whitespace-cleanup nil
-   dotspacemacs-themes '(dracula)))
+   dotspacemacs-themes '(dichromacy)))
 
 (defun init/proxy ()
   "Load the proxy configuration if defined."
@@ -159,9 +160,9 @@
   (set-face-background 'mode-line-inactive "black")
   (set-face-foreground 'mode-line-inactive "white")
   (setq projectile-mode-line "Projectile")
-  (setq evil-insert-state-cursor '((bar . 4) "white")
-        evil-normal-state-cursor '(box "white")
-        evil-replace-state-cursor '(hollow "white")
+  (setq evil-insert-state-cursor '((bar . 4) "gray")
+        evil-normal-state-cursor '(box "black")
+        evil-replace-state-cursor '(hollow "blue")
         evil-visual-state-cursor '(box "red")
         evil-iedit-state-cursor '(box "gold")
         evil-lisp-state-cursor '(box "deep pink")))
@@ -211,8 +212,8 @@
   ;; Line numbers
   (when (version<= "26.0.50" emacs-version )
     (setq display-line-numbers-type 'absolute)
-    (custom-set-faces '(line-number ((t (:foreground "dim gray")))))
-    (custom-set-faces '(line-number-current-line ((t (:background "gray12" :foreground "white")))))
+    (custom-set-faces '(line-number ((t (:foreground "black")))))
+    (custom-set-faces '(line-number-current-line ((t (:background "dim gray" :foreground "white")))))
     (add-hook 'prog-mode-hook 'display-line-numbers-mode)
     (add-hook 'org-mode-hook 'display-line-numbers-mode)
     (add-hook 'yaml-mode-hook 'display-line-numbers-mode))
