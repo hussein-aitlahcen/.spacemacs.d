@@ -43,8 +43,7 @@
                                                         auto-completion-private-snippets-directory nil)
                                        (haskell :variables
                                                 haskell-enable-hindent-style "fundamental"
-                                                haskell-completion-backend 'ghci
-                                                haskell-process-type 'stack-ghci)
+                                                haskell-completion-backend 'ghci)
                                        (shell :variables
                                               shell-default-shell 'eshell
                                               shell-default-position 'bottom
