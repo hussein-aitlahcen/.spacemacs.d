@@ -34,6 +34,13 @@
                                        xkcd
                                        gnus
                                        lsp
+                                       (auto-completion :variables
+                                                        auto-completion-return-key-behavior 'complete
+                                                        auto-completion-tab-key-behavior 'cycle
+                                                        auto-completion-complete-with-key-sequence nil
+                                                        auto-completion-complete-with-key-sequence-delay 0.1
+                                                        auto-completion-idle-delay 0.2
+                                                        auto-completion-private-snippets-directory nil)
                                        (haskell :variables
                                                 haskell-enable-hindent-style "fundamental"
                                                 haskell-completion-backend 'ghci
@@ -217,6 +224,7 @@
     (add-hook 'prog-mode-hook 'display-line-numbers-mode)
     (add-hook 'org-mode-hook 'display-line-numbers-mode)
     (add-hook 'yaml-mode-hook 'display-line-numbers-mode))
+
   ;; Cursor
   (global-evil-mc-mode t)
   (blink-cursor-mode t)
