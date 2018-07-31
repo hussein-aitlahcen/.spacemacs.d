@@ -42,6 +42,7 @@
                                                         auto-completion-private-snippets-directory nil)
                                        (haskell :variables
                                                 haskell-enable-hindent-style "fundamental"
+                                                haskell-enable-hindent t
                                                 haskell-completion-backend 'dante)
                                        (shell :variables
                                               shell-default-shell 'eshell
@@ -158,7 +159,7 @@
 
 (defun user-config/layout ()
   (setq projectile-mode-line "Projectile")
-  (setq evil-insert-state-cursor '((bar . 4) "dark green")
+  (setq evil-insert-state-cursor '((bar . 4) "gray")
         evil-normal-state-cursor '(box "red")
         evil-replace-state-cursor '(hollow "blue")
         evil-visual-state-cursor '(box "black")
