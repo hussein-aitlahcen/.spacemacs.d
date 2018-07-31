@@ -33,7 +33,6 @@
                                        theming
                                        xkcd
                                        gnus
-                                       lsp
                                        (auto-completion :variables
                                                         auto-completion-return-key-behavior 'complete
                                                         auto-completion-tab-key-behavior 'cycle
@@ -43,7 +42,7 @@
                                                         auto-completion-private-snippets-directory nil)
                                        (haskell :variables
                                                 haskell-enable-hindent-style "fundamental"
-                                                haskell-completion-backend 'ghci)
+                                                haskell-completion-backend 'dante)
                                        (shell :variables
                                               shell-default-shell 'eshell
                                               shell-default-position 'bottom
@@ -51,12 +50,9 @@
    dotspacemacs-additional-packages '(pandoc-mode
                                       dhall-mode
                                       all-the-icons
-                                      dracula-theme
-                                      pretty-mode
                                       groovy-mode
                                       legalese
-                                      processing-mode
-                                      (lsp-haskell :location (recipe :fetcher github :repo "emacs-lsp/lsp-haskell")))
+                                      processing-mode)
    dotspacemacs-frozen-packages '()
    dotspacemacs-excluded-packages '(vi-tilde-fringe
                                     spaceline)
@@ -203,14 +199,18 @@
   ;; Golden ratio for the current window
   (evil-leader/set-key "gr" 'golden-ratio)
 
-  ;; Haskell hie
-  (require 'lsp-haskell)
-  (add-hook 'haskell-mode-hook  (lambda ()
-                                  ;; from https://github.com/michalrus/dotfiles/blob/bdc726eb8847a9f70275587001d37fb489a9b059/dotfiles/emacs/.emacs.d/init.d/080-proglang-haskell.el#L32-L34
-                                  (setq-local lsp-haskell-process-path-hie (user-config/nixify-command "hie --lsp -l /tmp/hie.log"))
-                                  (lsp-haskell-enable)))
-  (add-hook 'haskell-mode-hook 'flycheck-mode)
+  ;; Haskell dante / Purescript psc
+  (evil-leader/set-key-for-mode 'haskell-mode
+    "x" 'xref-find-definitions
+    "a" 'dante-type-at
+    "z" 'dante-info)
+  (evil-leader/set-key-for-mode 'purescript-mode
+    "a" 'psc-ide-show-type)
 
+  (add-hook 'dante-mode-hook 'flycheck-mode)
+  (add-hook 'dante-mode-hook '(lambda() (flycheck-add-next-checker
+                                         'haskell-dante
+                                         '(warning . haskell-hlint))))
   ;; Line numbers
   (when (version<= "26.0.50" emacs-version )
     (setq display-line-numbers-type 'absolute)
@@ -225,7 +225,11 @@
   (blink-cursor-mode t)
 
   ;; Org-mode
-  (setq org-agenda-files (mapcar (lambda (d) (concat org-directory d)) '("/general.org" "/work.org" "/personnal.org" "/school.org"))
+  (setq org-agenda-files (mapcar (lambda (d) (concat org-directory d))
+                                 '("/general.org"
+                                   "/work.org"
+                                   "/personnal.org"
+                                   "/school.org"))
         org-default-notes-file (concat org-directory "/general.org"))
 
   ;; Bindings
@@ -235,12 +239,6 @@
 
 (defun user-config/pretty ()
   (load-file "~/.spacemacs.d/pretty-fonts.el")
-  (require 'pretty-mode)
-  (add-hook 'haskell-mode-hook 'turn-on-pretty-mode)
-  (add-hook 'purescript-mode-hook 'turn-on-pretty-mode)
-  (pretty-deactivate-groups '(:equality :ordering :ordering-double :ordering-triple :arrows :arrows-twoheaded :punctuation :logic :nil))
-  (pretty-activate-groups
-   '(:arithmetic-nary :undefined :sqrt :greek :sets :quantifiers))
   (pretty-fonts-set-kwds
    '((pretty-fonts-fira-font prog-mode-hook org-mode-hook))))
 
@@ -251,13 +249,12 @@
 (defun user-config/nixify-command (command)
   "Sandbox a command inside nix-shell if required"
   (let* ((nix-file "shell.nix")
-         (nix-path "NIX_PATH=\"nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs\"")
          (nix-file-directory (locate-dominating-file default-directory nix-file))
          (sandbox-script (make-temp-file "emacs-sandbox-"))
          (sandbox-script-content
           (if nix-file-directory
               (let ((nix-shell-path (expand-file-name nix-file nix-file-directory)))
-                (string-join (list nix-path "exec" "nix-shell" nix-shell-path "--command" "\"" command "\"") " "))
+                (string-join (list "exec" "nix-shell" nix-shell-path "--command" "\"" command "\"") " "))
             (string-join (list "exec" command) " "))))
     (write-region (string-join (list "#!/usr/bin/env bash" sandbox-script-content) "\n") nil sandbox-script)
     (shell-command (string-join (list "chmod u+x" sandbox-script) " "))
