@@ -207,10 +207,11 @@
   (evil-leader/set-key-for-mode 'purescript-mode
     "a" 'psc-ide-show-type)
 
-  (add-hook 'dante-mode-hook 'flycheck-mode)
   (add-hook 'dante-mode-hook '(lambda() (flycheck-add-next-checker
                                          'haskell-dante
                                          '(warning . haskell-hlint))))
+  (add-hook 'dante-mode-hook 'flycheck-mode)
+
   ;; Line numbers
   (when (version<= "26.0.50" emacs-version )
     (setq display-line-numbers-type 'absolute)
