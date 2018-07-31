@@ -159,12 +159,11 @@
 
 (defun user-config/layout ()
   (setq projectile-mode-line "Projectile")
-  (setq evil-insert-state-cursor '((bar . 5) "red")
-        evil-normal-state-cursor '(box "dark gray")
-        evil-replace-state-cursor '(hollow "blue")
-        evil-visual-state-cursor '(box "black")
-        evil-iedit-state-cursor '(box "gold")
-        evil-lisp-state-cursor '(box "deep pink")))
+  (setq evil-insert-state-cursor '((bar . 4) "red")
+        evil-normal-state-cursor '(box "blue")
+        evil-replace-state-cursor '(hollow "black")
+        evil-visual-state-cursor '(box "orange")
+        evil-iedit-state-cursor '(box "deep pink")))
 
 (defun user-config/email ()
   (add-hook 'gnus-message-setup-hook 'mml-secure-message-sign-pgpmime)
