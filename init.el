@@ -218,6 +218,8 @@
     (custom-set-faces '(line-number ((t (:background "white" :foreground "dark gray")))))
     (custom-set-faces '(line-number-current-line ((t (:background "beige" :foreground "black")))))
     (add-hook 'prog-mode-hook 'display-line-numbers-mode)
+    (add-hook 'conf-mode-hook 'display-line-numbers-mode)
+    (add-hook 'text-mode-hook 'display-line-numbers-mode)
     (add-hook 'org-mode-hook 'display-line-numbers-mode)
     (add-hook 'yaml-mode-hook 'display-line-numbers-mode))
 
@@ -239,10 +241,9 @@
   (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line))
 
 (defun user-config/pretty ()
-  ;; (load-file "~/.spacemacs.d/pretty-fonts.el")
-  ;; (pretty-fonts-set-kwds
-  ;; '((pretty-fonts-fira-font prog-mode-hook org-mode-hook))
-   )
+  (load-file "~/.spacemacs.d/pretty-fonts.el")
+  (pretty-fonts-set-kwds
+   '((pretty-fonts-fira-font prog-mode-hook org-mode-hook))))
 
 (defun user-config/legalese ()
   (setq legalese-default-copyright "Hussein Ait-Lahcen"
