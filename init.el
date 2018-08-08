@@ -239,9 +239,10 @@
   (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line))
 
 (defun user-config/pretty ()
-  (load-file "~/.spacemacs.d/pretty-fonts.el")
-  (pretty-fonts-set-kwds
-   '((pretty-fonts-fira-font prog-mode-hook org-mode-hook))))
+  ;; (load-file "~/.spacemacs.d/pretty-fonts.el")
+  ;; (pretty-fonts-set-kwds
+  ;; '((pretty-fonts-fira-font prog-mode-hook org-mode-hook))
+   )
 
 (defun user-config/legalese ()
   (setq legalese-default-copyright "Hussein Ait-Lahcen"
