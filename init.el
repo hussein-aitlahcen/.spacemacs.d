@@ -159,6 +159,12 @@
 
 (defun user-config/layout ()
   (setq projectile-mode-line "Projectile")
+  (custom-set-faces
+    '(helm-grep-file ((t (:foreground "DarkGray" :underline t))))
+    '(helm-grep-finish ((t (:foreground "dim gray"))))
+    '(helm-grep-lineno ((t (:foreground "LightCoral"))))
+    '(helm-grep-match ((t (:background "beige" :foreground "black"))))
+    '(helm-match ((t (:background "beige" :foreground "dim gray")))))
   (setq evil-insert-state-cursor '((bar . 4) "red")
         evil-normal-state-cursor '(box "blue")
         evil-replace-state-cursor '(hollow "black")
@@ -215,7 +221,9 @@
   ;; Line numbers
   (when (version<= "26.0.50" emacs-version )
     (setq display-line-numbers-type 'absolute)
-    (custom-set-faces '(line-number ((t (:background "white" :foreground "dark gray")))))
+    (custom-set-faces
+     '(line-number ((t (:foreground "black"))))
+     '(line-number-current-line ((t (:background "dim gray" :foreground "white")))))
     (custom-set-faces '(line-number-current-line ((t (:background "beige" :foreground "black")))))
     (add-hook 'prog-mode-hook 'display-line-numbers-mode)
     (add-hook 'conf-mode-hook 'display-line-numbers-mode)
