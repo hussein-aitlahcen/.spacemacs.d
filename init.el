@@ -222,9 +222,8 @@
   (when (version<= "26.0.50" emacs-version )
     (setq display-line-numbers-type 'absolute)
     (custom-set-faces
-     '(line-number ((t (:foreground "black"))))
-     '(line-number-current-line ((t (:background "dim gray" :foreground "white")))))
-    (custom-set-faces '(line-number-current-line ((t (:background "beige" :foreground "black")))))
+     '(line-number ((t (:background "white" :foreground "dark gray"))))
+     '(line-number-current-line ((t (:background "beige" :foreground "black")))))
     (add-hook 'prog-mode-hook 'display-line-numbers-mode)
     (add-hook 'conf-mode-hook 'display-line-numbers-mode)
     (add-hook 'text-mode-hook 'display-line-numbers-mode)
