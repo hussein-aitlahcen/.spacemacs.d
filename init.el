@@ -200,7 +200,7 @@
   (add-hook 'markdown-mode-hook 'pandoc-mode)
 
   (spacemacs/set-leader-keys-for-major-mode 'haskell-mode
-    "F" 'hindent-reformat-buffer
+    "G" 'hindent-reformat-buffer
     "x" 'xref-find-definitions
     "a" 'dante-type-at
     "z" 'dante-info)
