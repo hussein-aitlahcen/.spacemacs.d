@@ -99,7 +99,7 @@
    dotspacemacs-scratch-mode 'text-mode
    dotspacemacs-colorize-cursor-according-to-state nil
    dotspacemacs-default-font '("DejaVu Sans Mono"
-                               :size 10)
+                               :size 13)
    dotspacemacs-leader-key "SPC"
    dotspacemacs-emacs-command-key "SPC"
    dotspacemacs-ex-command-key ":"
