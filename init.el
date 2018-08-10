@@ -193,6 +193,14 @@
         nnml-directory "~/gmail"
         message-directory "~/gmail"))
 
+(spacemacs|use-package-add-hook haskell
+  :post-config
+  (spacemacs/set-leader-keys-for-major-mode 'haskell-mode
+    "F" 'hindent-reformat-buffer
+    "x" 'xref-find-definitions
+    "a" 'dante-type-at
+    "z" 'dante-info))
+
 (defun user-config/editing ()
   ;; Pandoc mode for markdown
   (add-hook 'markdown-mode-hook 'pandoc-mode)
@@ -202,18 +210,11 @@
     "K" 'git-rebase-move-line-up
     "J" 'git-rebase-move-line-down)
 
-
   ;; Golden ratio for the current window
   (evil-leader/set-key "gr" 'golden-ratio)
 
-  ;; Haskell dante / Purescript psc
-  (evil-leader/set-key-for-mode 'haskell-mode
-    "x" 'xref-find-definitions
-    "a" 'dante-type-at
-    "z" 'dante-info
-    "F" 'hindent-reformat-buffer)
-  (evil-leader/set-key-for-mode 'purescript-mode
-    "a" 'psc-ide-show-type)
+  ;; Purescript psc
+  (evil-leader/set-key-for-mode 'purescript-mode "a" 'psc-ide-show-type)
 
   (add-hook 'dante-mode-hook '(lambda() (flycheck-add-next-checker
                                          'haskell-dante
