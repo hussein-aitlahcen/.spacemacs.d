@@ -62,8 +62,7 @@
 (defun dotspacemacs/init ()
   "Function that will be called before loading packages etc..."
   (init/vars)
-  (init/proxy)
-  (init/hooks))
+  (init/proxy))
 
 (defun dotspacemacs/user-init ()
   "Avoid custom-vars to be set in init.el file"
@@ -147,15 +146,6 @@
    dotspacemacs-whitespace-cleanup nil
    dotspacemacs-themes '(dichromacy)))
 
-(defun init/hooks ()
-  (spacemacs|use-package-add-hook haskell
-    :post-config
-    (spacemacs/set-leader-keys-for-major-mode 'haskell-mode
-      "F" 'hindent-reformat-buffer
-      "x" 'xref-find-definitions
-      "a" 'dante-type-at
-      "z" 'dante-info)))
-
 (defun init/proxy ()
   "Load the proxy configuration if defined."
   (when (file-exists-p "~/.spacemacs.d/proxy.el")
@@ -208,6 +198,12 @@
 (defun user-config/editing ()
   ;; Pandoc mode for markdown
   (add-hook 'markdown-mode-hook 'pandoc-mode)
+
+  (spacemacs/set-leader-keys-for-major-mode 'haskell-mode
+    "F" 'hindent-reformat-buffer
+    "x" 'xref-find-definitions
+    "a" 'dante-type-at
+    "z" 'dante-info)
 
   ;; Avoid conflicting M-k/j with I3
   (evil-define-key 'git-rebase-mode 'git-rebase-mode-map
