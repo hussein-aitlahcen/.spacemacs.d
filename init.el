@@ -202,7 +202,6 @@
     "K" 'git-rebase-move-line-up
     "J" 'git-rebase-move-line-down)
 
-  (spacemacs/set-leader-keys-for-major-mode 'haskell-mode "F" 'hindent-reformat-buffer)
 
   ;; Golden ratio for the current window
   (evil-leader/set-key "gr" 'golden-ratio)
@@ -211,7 +210,8 @@
   (evil-leader/set-key-for-mode 'haskell-mode
     "x" 'xref-find-definitions
     "a" 'dante-type-at
-    "z" 'dante-info)
+    "z" 'dante-info
+    "F" 'hindent-reformat-buffer)
   (evil-leader/set-key-for-mode 'purescript-mode
     "a" 'psc-ide-show-type)
 
