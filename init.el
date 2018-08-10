@@ -193,17 +193,19 @@
         nnml-directory "~/gmail"
         message-directory "~/gmail"))
 
-(spacemacs|use-package-add-hook haskell
-  :post-config
-  (spacemacs/set-leader-keys-for-major-mode 'haskell-mode
-    "F" 'hindent-reformat-buffer
-    "x" 'xref-find-definitions
-    "a" 'dante-type-at
-    "z" 'dante-info))
+
 
 (defun user-config/editing ()
   ;; Pandoc mode for markdown
   (add-hook 'markdown-mode-hook 'pandoc-mode)
+
+  (spacemacs|use-package-add-hook haskell
+    :post-config
+    (spacemacs/set-leader-keys-for-major-mode 'haskell-mode
+      "F" 'hindent-reformat-buffer
+      "x" 'xref-find-definitions
+      "a" 'dante-type-at
+      "z" 'dante-info))
 
   ;; Avoid conflicting M-k/j with I3
   (evil-define-key 'git-rebase-mode 'git-rebase-mode-map
