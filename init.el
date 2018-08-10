@@ -98,8 +98,8 @@
    dotspacemacs-startup-buffer-responsive t
    dotspacemacs-scratch-mode 'text-mode
    dotspacemacs-colorize-cursor-according-to-state nil
-   dotspacemacs-default-font '("DejaVue Sans Mono"
-                               :size 12)
+   dotspacemacs-default-font '("DejaVu Sans Mono"
+                               :size 10)
    dotspacemacs-leader-key "SPC"
    dotspacemacs-emacs-command-key "SPC"
    dotspacemacs-ex-command-key ":"
