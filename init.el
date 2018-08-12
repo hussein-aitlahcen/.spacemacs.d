@@ -40,8 +40,8 @@
                                             '(("irc.freenode.net"
                                                :port "6697"
                                                :ssl t
-                                               :nick "haitlah"))
-                                            '(("irc.chat.twitch.tv"
+                                               :nick "haitlah")
+                                              ("irc.chat.twitch.tv"
                                                :port "6667"
                                                :nick "hussla")))
                                        (auto-completion :variables
