@@ -34,6 +34,7 @@
                                        xkcd
                                        gnus
                                        (erc :variables
+                                            erc-prompt-for-nickserv-password nil
                                             erc-autojoin-channels-alist '(("freenode.net" "#haskell" "#nixos")
                                                                           ("chat.twitch.tv" "#hussla" "#vinerval"))
                                             erc-server-list
