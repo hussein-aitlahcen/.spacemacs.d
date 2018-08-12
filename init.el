@@ -34,7 +34,8 @@
                                        xkcd
                                        gnus
                                        (erc :variables
-                                            erc-autojoin-channels-alist '(("#haskell" "#nixos" "#hussla" "#vinerval"))
+                                            erc-autojoin-channels-alist '(("freenode.net" "#haskell" "#nixos")
+                                                                          ("chat.twitch.tv" "#hussla" "#vinerval"))
                                             erc-server-list
                                             '(("irc.freenode.net"
                                                :port "6697"
