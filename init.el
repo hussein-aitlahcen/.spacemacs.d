@@ -33,6 +33,12 @@
                                        theming
                                        xkcd
                                        gnus
+                                       (erc :variables
+                                            erc-server-list
+                                            '(("irc.freenode.net"
+                                               :port "6697"
+                                               :ssl t
+                                               :nick "haitlah")))
                                        (auto-completion :variables
                                                         auto-completion-return-key-behavior 'complete
                                                         auto-completion-tab-key-behavior 'cycle
