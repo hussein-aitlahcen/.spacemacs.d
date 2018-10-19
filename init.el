@@ -8,7 +8,8 @@
    dotspacemacs-configuration-layers '(twitter
                                        php
                                        purescript
-				                               agda
+				       terraform
+	                               agda
                                        themes-megapack
                                        idris
                                        octave
