@@ -28,6 +28,7 @@
                                        theming
                                        xkcd
                                        gnus
+				       (multiple-cursors :variables multiple-cursors-backend 'evil-mc)
                                        (erc :variables
                                             erc-prompt-for-nickserv-password nil
                                             erc-autojoin-channels-alist '(("freenode.net" "#haskell" "#nixos")
