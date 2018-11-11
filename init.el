@@ -6,14 +6,9 @@
    dotspacemacs-ask-for-lazy-installation nil
    dotspacemacs-configuration-layer-path '()
    dotspacemacs-configuration-layers '(twitter
-                                       php
                                        purescript
 				       terraform
-	                               agda
                                        themes-megapack
-                                       idris
-                                       octave
-                                       python
                                        docker
                                        haskell
                                        c-c++
@@ -27,8 +22,6 @@
                                        markdown
                                        org
                                        ansible
-                                       csharp
-                                       scala
                                        rust
                                        pdf
                                        neotree
