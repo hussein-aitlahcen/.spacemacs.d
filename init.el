@@ -56,8 +56,12 @@
                                               shell-default-shell 'eshell
                                               shell-default-position 'bottom
                                               shell-default-height 40))
-   dotspacemacs-additional-packages '(pandoc-mode
-                                      dhall-mode
+   dotspacemacs-additional-packages '((dhall-mode
+                                       :location (recipe
+                                                  :repo "psibi/dhall-mode"
+                                                  :fetcher github
+                                                  :files ("dhall-mode.el")))
+                                      pandoc-mode
                                       all-the-icons
                                       groovy-mode
                                       legalese
