@@ -170,6 +170,14 @@
   (load-file "~/.spacemacs.d/magit-gerrit.el"))
 
 (defun user-config/layout ()
+  ;; https://github.com/syl20bnr/spacemacs/issues/7446#issuecomment-417376425
+  (with-eval-after-load "helm"
+    (defun helm-persistent-action-display-window (&optional split-onewindow)
+      "Return the window that will be used for persistent action.
+If SPLIT-ONEWINDOW is non-`nil' window is split in persistent action."
+      (with-helm-window
+        (setq helm-persistent-action-display-window (get-mru-window)))))
+
   (setq projectile-mode-line "Projectile")
   (custom-set-faces
     '(helm-grep-file ((t (:foreground "DarkGray" :underline t))))
@@ -180,7 +188,7 @@
   (setq evil-insert-state-cursor '((bar . 4) "red")
         evil-normal-state-cursor '(box "blue")
         evil-replace-state-cursor '(hollow "black")
-        evil-visual-state-cursor '(box "orange")
+        evil-visual-state-cursor '(box "black")
         evil-iedit-state-cursor '(box "deep pink")))
 
 (defun user-config/email ()
