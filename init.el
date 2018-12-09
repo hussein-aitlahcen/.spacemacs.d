@@ -7,7 +7,7 @@
    dotspacemacs-configuration-layer-path '()
    dotspacemacs-configuration-layers '(twitter
                                        purescript
-				       terraform
+				                               terraform
                                        themes-megapack
                                        docker
                                        haskell
@@ -28,7 +28,8 @@
                                        theming
                                        xkcd
                                        gnus
-				       (multiple-cursors :variables multiple-cursors-backend 'evil-mc)
+                                       idris
+				                               (multiple-cursors :variables multiple-cursors-backend 'evil-mc)
                                        (erc :variables
                                             erc-prompt-for-nickserv-password nil
                                             erc-autojoin-channels-alist '(("freenode.net" "#haskell" "#nixos")
