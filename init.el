@@ -29,6 +29,7 @@
                                        xkcd
                                        gnus
                                        idris
+                                       floobits
 				                               (multiple-cursors :variables multiple-cursors-backend 'evil-mc)
                                        (erc :variables
                                             erc-prompt-for-nickserv-password nil
