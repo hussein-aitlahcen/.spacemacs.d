@@ -228,9 +228,9 @@ If SPLIT-ONEWINDOW is non-`nil' window is split in persistent action."
     "z" 'dante-info)
 
   ;; Avoid conflicting M-k/j with I3
-  (evil-define-key 'git-rebase-mode 'git-rebase-mode-map
-    "K" 'git-rebase-move-line-up
-    "J" 'git-rebase-move-line-down)
+  (with-eval-after-load "magit"
+    (define-key git-rebase-mode-map (kbd "K") 'git-rebase-move-line-up)
+    (define-key git-rebase-mode-map (kbd "J") 'git-rebase-move-line-down))
 
   ;; Golden ratio for the current window
   (evil-leader/set-key "gr" 'golden-ratio)
