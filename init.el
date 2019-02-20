@@ -222,7 +222,7 @@ If SPLIT-ONEWINDOW is non-`nil' window is split in persistent action."
   (add-hook 'markdown-mode-hook 'pandoc-mode)
 
   (spacemacs/set-leader-keys-for-major-mode 'haskell-mode
-    "G" 'hindent-reformat-buffer
+    "G" 'ignore
     "x" 'xref-find-definitions
     "a" 'dante-type-at
     "z" 'dante-info)
