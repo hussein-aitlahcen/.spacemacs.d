@@ -241,7 +241,6 @@ If SPLIT-ONEWINDOW is non-`nil' window is split in persistent action."
   (evil-leader/set-key-for-mode 'purescript-mode "a" 'psc-ide-show-type)
 
   (setq lsp-haskell-process-path-hie "hie-wrapper")
-  (setq lsp-ui-peek-enable nil)
   (setq lsp-ui-sideline-enable nil)
   (setq lsp-ui-doc-enable nil)
 
