@@ -32,8 +32,7 @@
                                        floobits
                                        lsp
                                        (haskell :variables
-                                                haskell-completion-backend 'ghci
-                                                haskell-process-type 'stack-ghci)
+                                                haskell-completion-backend 'dante)
                                        (multiple-cursors :variables multiple-cursors-backend 'evil-mc)
                                        (erc :variables
                                             erc-prompt-for-nickserv-password nil
@@ -249,7 +248,6 @@ If SPLIT-ONEWINDOW is non-`nil' window is split in persistent action."
   (require 'lsp-haskell)
   (add-hook 'haskell-mode-hook #'lsp)
   (add-hook 'haskell-mode-hook 'flycheck-mode)
-  (add-hook 'lsp-mode-hook 'lsp-ui-mode)
 
   ;; Line numbers
   (when (version<= "26.0.50" emacs-version )
