@@ -240,9 +240,15 @@ If SPLIT-ONEWINDOW is non-`nil' window is split in persistent action."
   (evil-leader/set-key-for-mode 'purescript-mode "a" 'psc-ide-show-type)
 
   (setq lsp-haskell-process-path-hie "hie-wrapper")
+  (setq lsp-ui-peek-enable nil)
+  (setq lsp-ui-sideline-enable nil)
+  (setq lsp-ui-doc-enable nil)
+
+  (require 'lsp)
   (require 'lsp-haskell)
   (add-hook 'haskell-mode-hook #'lsp)
   (add-hook 'haskell-mode-hook 'flycheck-mode)
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode)
 
   ;; Line numbers
   (when (version<= "26.0.50" emacs-version )
