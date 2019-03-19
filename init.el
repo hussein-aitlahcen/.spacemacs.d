@@ -32,7 +32,8 @@
                                        floobits
                                        lsp
                                        (haskell :variables
-                                                haskell-completion-backend 'dante)
+                                                haskell-completion-backend 'ghci
+                                                haskell-process-type 'stack-ghci)
                                        (multiple-cursors :variables multiple-cursors-backend 'evil-mc)
                                        (erc :variables
                                             erc-prompt-for-nickserv-password nil
