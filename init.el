@@ -7,7 +7,7 @@
    dotspacemacs-configuration-layer-path '()
    dotspacemacs-configuration-layers '(twitter
                                        purescript
-				       terraform
+                                       terraform
                                        themes-megapack
                                        docker
                                        haskell
@@ -31,8 +31,8 @@
                                        idris
                                        floobits
                                        lsp
-				       haskell
-				       (multiple-cursors :variables multiple-cursors-backend 'evil-mc)
+                                       haskell
+                                       (multiple-cursors :variables multiple-cursors-backend 'evil-mc)
                                        (erc :variables
                                             erc-prompt-for-nickserv-password nil
                                             erc-autojoin-channels-alist '(("freenode.net" "#haskell" "#nixos")
@@ -58,13 +58,12 @@
                                               shell-default-height 40))
    dotspacemacs-additional-packages '((dhall-mode
                                        :location (recipe
-						   :repo "psibi/dhall-mode" 
-						   :fetcher github 
-						   :files ("dhall-mode.el")))
-                                      (lsp-haskell
-					:location (recipe
-						    :fetcher github 
-						    :repo "emacs-lsp/lsp-haskell"))
+                                                  :repo "psibi/dhall-mode"
+                                                  :fetcher github
+                                                  :files ("dhall-mode.el")))
+                                      (lsp-haskell :location (recipe
+                                                              :fetcher github
+                                                              :repo "emacs-lsp/lsp-haskell"))
                                       pandoc-mode
                                       all-the-icons
                                       groovy-mode
@@ -243,6 +242,7 @@ If SPLIT-ONEWINDOW is non-`nil' window is split in persistent action."
   (setq lsp-haskell-process-path-hie "hie-wrapper")
   (require 'lsp-haskell)
   (add-hook 'haskell-mode-hook #'lsp)
+  (add-hook 'haskell-mode-hook 'flycheck-mode)
 
   ;; Line numbers
   (when (version<= "26.0.50" emacs-version )
