@@ -31,7 +31,8 @@
                                        idris
                                        floobits
                                        lsp
-                                       haskell
+                                       (haskell :variables
+                                                haskell-completion-backend 'dante)
                                        (multiple-cursors :variables multiple-cursors-backend 'evil-mc)
                                        (erc :variables
                                             erc-prompt-for-nickserv-password nil
