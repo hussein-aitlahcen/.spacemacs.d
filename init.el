@@ -7,7 +7,7 @@
    dotspacemacs-configuration-layer-path '()
    dotspacemacs-configuration-layers '(twitter
                                        purescript
-				                               terraform
+				       terraform
                                        themes-megapack
                                        docker
                                        haskell
@@ -30,7 +30,9 @@
                                        gnus
                                        idris
                                        floobits
-				                               (multiple-cursors :variables multiple-cursors-backend 'evil-mc)
+                                       lsp
+				       haskell
+				       (multiple-cursors :variables multiple-cursors-backend 'evil-mc)
                                        (erc :variables
                                             erc-prompt-for-nickserv-password nil
                                             erc-autojoin-channels-alist '(("freenode.net" "#haskell" "#nixos")
@@ -50,19 +52,19 @@
                                                         auto-completion-complete-with-key-sequence-delay 0.1
                                                         auto-completion-idle-delay 0.2
                                                         auto-completion-private-snippets-directory nil)
-                                       (haskell :variables
-                                                haskell-enable-hindent-style "fundamental"
-                                                haskell-enable-hindent t
-                                                haskell-completion-backend 'dante)
                                        (shell :variables
                                               shell-default-shell 'eshell
                                               shell-default-position 'bottom
                                               shell-default-height 40))
    dotspacemacs-additional-packages '((dhall-mode
                                        :location (recipe
-                                                  :repo "psibi/dhall-mode"
-                                                  :fetcher github
-                                                  :files ("dhall-mode.el")))
+						   :repo "psibi/dhall-mode" 
+						   :fetcher github 
+						   :files ("dhall-mode.el")))
+                                      (lsp-haskell
+					:location (recipe
+						    :fetcher github 
+						    :repo "emacs-lsp/lsp-haskell"))
                                       pandoc-mode
                                       all-the-icons
                                       groovy-mode
@@ -238,10 +240,9 @@ If SPLIT-ONEWINDOW is non-`nil' window is split in persistent action."
   ;; Purescript psc
   (evil-leader/set-key-for-mode 'purescript-mode "a" 'psc-ide-show-type)
 
-  (add-hook 'dante-mode-hook '(lambda() (flycheck-add-next-checker
-                                         'haskell-dante
-                                         '(warning . haskell-hlint))))
-  (add-hook 'dante-mode-hook 'flycheck-mode)
+  (setq lsp-haskell-process-path-hie "hie-wrapper")
+  (require 'lsp-haskell)
+  (add-hook 'haskell-mode-hook #'lsp)
 
   ;; Line numbers
   (when (version<= "26.0.50" emacs-version )
