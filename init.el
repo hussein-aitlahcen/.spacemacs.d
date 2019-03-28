@@ -247,8 +247,8 @@ If SPLIT-ONEWINDOW is non-`nil' window is split in persistent action."
   (when (version<= "26.0.50" emacs-version )
     (setq display-line-numbers-type 'absolute)
     (custom-set-faces
-     '(line-number ((t (:background "white" :foreground "dark gray"))))
-     '(line-number-current-line ((t (:background "beige" :foreground "black")))))
+     '(line-number ((t (:background "floral white" :foreground "dark gray"))))
+     '(line-number-current-line ((t (:background "white" :foreground "black")))))
     (add-hook 'prog-mode-hook 'display-line-numbers-mode)
     (add-hook 'conf-mode-hook 'display-line-numbers-mode)
     (add-hook 'text-mode-hook 'display-line-numbers-mode)
