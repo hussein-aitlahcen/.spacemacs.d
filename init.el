@@ -248,7 +248,7 @@ If SPLIT-ONEWINDOW is non-`nil' window is split in persistent action."
     (setq display-line-numbers-type 'absolute)
     (custom-set-faces
      '(line-number ((t (:background "floral white" :foreground "dark gray"))))
-     '(line-number-current-line ((t (:weight "bold" :background "white" :foreground "black")))))
+     '(line-number-current-line ((t (:background "white" :foreground "black")))))
     (add-hook 'prog-mode-hook 'display-line-numbers-mode)
     (add-hook 'conf-mode-hook 'display-line-numbers-mode)
     (add-hook 'text-mode-hook 'display-line-numbers-mode)
