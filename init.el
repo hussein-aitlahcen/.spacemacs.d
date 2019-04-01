@@ -113,7 +113,7 @@
    dotspacemacs-scratch-mode 'text-mode
    dotspacemacs-colorize-cursor-according-to-state nil
    dotspacemacs-default-font '("Fira Code"
-                               :size 13)
+                               :size 15)
    dotspacemacs-leader-key "SPC"
    dotspacemacs-emacs-command-key "SPC"
    dotspacemacs-ex-command-key ":"
