@@ -10,7 +10,6 @@
 				                               terraform
                                        themes-megapack
                                        docker
-                                       haskell
                                        c-c++
                                        html
                                        nixos
@@ -29,7 +28,6 @@
                                        xkcd
                                        gnus
                                        idris
-                                       floobits
                                        protobuf
 				                               (multiple-cursors :variables multiple-cursors-backend 'evil-mc)
                                        (erc :variables
@@ -44,17 +42,10 @@
                                               ("irc.chat.twitch.tv"
                                                :port "6667"
                                                :nick "hussla")))
-                                       (auto-completion :variables
-                                                        auto-completion-return-key-behavior 'complete
-                                                        auto-completion-tab-key-behavior 'cycle
-                                                        auto-completion-complete-with-key-sequence nil
-                                                        auto-completion-complete-with-key-sequence-delay 0.1
-                                                        auto-completion-idle-delay 0.2
-                                                        auto-completion-private-snippets-directory nil)
-                                       (haskell :variables
-                                                haskell-enable-hindent-style "fundamental"
-                                                haskell-enable-hindent t
-                                                haskell-completion-backend 'dante)
+                                       lsp
+                                       (haskell :variables ;; Or optionally just haskell without the variables.
+                                                haskell-completion-backend 'ghci
+                                                haskell-process-type 'stack-ghci)
                                        (shell :variables
                                               shell-default-shell 'eshell
                                               shell-default-position 'bottom
@@ -64,11 +55,13 @@
                                                   :repo "psibi/dhall-mode"
                                                   :fetcher github
                                                   :files ("dhall-mode.el")))
+                                      (lsp-haskell
+                                       :location (recipe
+                                                  :fetcher github
+                                                  :repo "emacs-lsp/lsp-haskell"))
                                       pandoc-mode
                                       all-the-icons
-                                      groovy-mode
-                                      legalese
-                                      processing-mode)
+                                      legalese)
    dotspacemacs-frozen-packages '()
    dotspacemacs-excluded-packages '(vi-tilde-fringe
                                     spaceline)
@@ -221,6 +214,10 @@ If SPLIT-ONEWINDOW is non-`nil' window is split in persistent action."
 (defun user-config/editing ()
   ;; Pandoc mode for markdown
   (add-hook 'markdown-mode-hook 'pandoc-mode)
+
+  (setq lsp-haskell-process-path-hie "hie-wrapper")
+  (require 'lsp-haskell)
+  (add-hook 'haskell-mode-hook #'lsp)
 
   (spacemacs/set-leader-keys-for-major-mode 'haskell-mode
     "G" 'ignore
