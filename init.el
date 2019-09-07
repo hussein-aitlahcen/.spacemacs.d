@@ -219,12 +219,6 @@ If SPLIT-ONEWINDOW is non-`nil' window is split in persistent action."
   (require 'lsp-haskell)
   (add-hook 'haskell-mode-hook #'lsp)
 
-  (spacemacs/set-leader-keys-for-major-mode 'haskell-mode
-    "G" 'ignore
-    "x" 'xref-find-definitions
-    "a" 'dante-type-at
-    "z" 'dante-info)
-
   ;; Avoid conflicting M-k/j with I3
   (with-eval-after-load 'git-rebase
     (define-key git-rebase-mode-map (kbd "K") 'git-rebase-move-line-up)
