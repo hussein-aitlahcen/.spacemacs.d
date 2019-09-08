@@ -29,6 +29,9 @@
                                        gnus
                                        idris
                                        protobuf
+                                       csharp
+                                       fsharp
+                                       auto-completion
 				                               (multiple-cursors :variables multiple-cursors-backend 'evil-mc)
                                        (erc :variables
                                             erc-prompt-for-nickserv-password nil
