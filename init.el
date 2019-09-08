@@ -27,6 +27,7 @@
                                        csharp
                                        auto-completion
                                        lsp
+                                       fsharp2
 				                               (multiple-cursors :variables multiple-cursors-backend 'evil-mc)
                                        (haskell :variables ;; Or optionally just haskell without the variables.
                                                 haskell-completion-backend 'ghci
