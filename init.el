@@ -27,11 +27,13 @@
                                        theming
                                        xkcd
                                        gnus
+                                       syntax-checking
+                                       fsharp2
                                        idris
                                        protobuf
                                        csharp
-                                       fsharp
                                        auto-completion
+                                       lsp
 				                               (multiple-cursors :variables multiple-cursors-backend 'evil-mc)
                                        (erc :variables
                                             erc-prompt-for-nickserv-password nil
@@ -45,7 +47,6 @@
                                               ("irc.chat.twitch.tv"
                                                :port "6667"
                                                :nick "hussla")))
-                                       lsp
                                        (haskell :variables ;; Or optionally just haskell without the variables.
                                                 haskell-completion-backend 'ghci
                                                 haskell-process-type 'stack-ghci)
