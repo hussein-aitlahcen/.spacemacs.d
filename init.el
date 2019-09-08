@@ -5,11 +5,8 @@
    dotspacemacs-enable-lazy-installation 'unused
    dotspacemacs-ask-for-lazy-installation nil
    dotspacemacs-configuration-layer-path '()
-   dotspacemacs-configuration-layers '(twitter
-                                       purescript
-				                               terraform
+   dotspacemacs-configuration-layers '(purescript
                                        themes-megapack
-                                       docker
                                        c-c++
                                        html
                                        nixos
@@ -17,7 +14,6 @@
                                        helm
                                        emacs-lisp
                                        git
-                                       dash
                                        markdown
                                        org
                                        ansible
@@ -25,28 +21,13 @@
                                        pdf
                                        neotree
                                        theming
-                                       xkcd
                                        gnus
                                        syntax-checking
-                                       fsharp2
-                                       idris
                                        protobuf
                                        csharp
                                        auto-completion
                                        lsp
 				                               (multiple-cursors :variables multiple-cursors-backend 'evil-mc)
-                                       (erc :variables
-                                            erc-prompt-for-nickserv-password nil
-                                            erc-autojoin-channels-alist '(("freenode.net" "#haskell" "#nixos")
-                                                                          ("twitch.tv" "#hussla" "#vinerval"))
-                                            erc-server-list
-                                            '(("irc.freenode.net"
-                                               :port "6697"
-                                               :ssl t
-                                               :nick "haitlah")
-                                              ("irc.chat.twitch.tv"
-                                               :port "6667"
-                                               :nick "hussla")))
                                        (haskell :variables ;; Or optionally just haskell without the variables.
                                                 haskell-completion-backend 'ghci
                                                 haskell-process-type 'stack-ghci)
@@ -79,7 +60,6 @@
 (defun dotspacemacs/user-init ()
   "Avoid custom-vars to be set in init.el file"
   (push '("melpa-stable" . "stable.melpa.org/packages/") configuration-layer-elpa-archives)
-  (push '(ensime . "melpa-stable") package-pinned-packages)
   (setq custom-file "~/.spacemacs.d/custom.el")
   (if (not (file-exists-p custom-file))
       (write-region "" nil custom-file)
@@ -105,8 +85,8 @@
    dotspacemacs-editing-style 'vim
    dotspacemacs-verbose-loading nil
    dotspacemacs-startup-banner '998
-   dotspacemacs-startup-lists '((recents . 5)
-                                (projects . 7))
+   dotspacemacs-startup-lists '((recents . 10)
+                                (projects . 10))
    dotspacemacs-startup-buffer-responsive t
    dotspacemacs-scratch-mode 'text-mode
    dotspacemacs-colorize-cursor-according-to-state nil
@@ -275,17 +255,3 @@ If SPLIT-ONEWINDOW is non-`nil' window is split in persistent action."
 (defun user-config/legalese ()
   (setq legalese-default-copyright "Hussein Ait-Lahcen"
         legalese-default-author "Hussein Ait-Lahcen <hussein.aitlahcen@gmail.com>"))
-
-(defun user-config/nixify-command (command)
-  "Sandbox a command inside nix-shell if required"
-  (let* ((nix-file "shell.nix")
-         (nix-file-directory (locate-dominating-file default-directory nix-file))
-         (sandbox-script (make-temp-file "emacs-sandbox-"))
-         (sandbox-script-content
-          (if nix-file-directory
-              (let ((nix-shell-path (expand-file-name nix-file nix-file-directory)))
-                (string-join (list "exec" "nix-shell" nix-shell-path "--command" "\"" command "\"") " "))
-            (string-join (list "exec" command) " "))))
-    (write-region (string-join (list "#!/usr/bin/env bash" sandbox-script-content) "\n") nil sandbox-script)
-    (shell-command (string-join (list "chmod u+x" sandbox-script) " "))
-    sandbox-script))
