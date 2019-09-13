@@ -22,16 +22,13 @@
                                        neotree
                                        theming
                                        gnus
-                                       syntax-checking
                                        protobuf
                                        csharp
                                        auto-completion
-                                       lsp
                                        fsharp2
 				                               (multiple-cursors :variables multiple-cursors-backend 'evil-mc)
-                                       (haskell :variables ;; Or optionally just haskell without the variables.
-                                                haskell-completion-backend 'ghci
-                                                haskell-process-type 'stack-ghci)
+                                       (haskell :variables
+                                                haskell-completion-backend 'dante)
                                        (shell :variables
                                               shell-default-shell 'eshell
                                               shell-default-position 'bottom
@@ -41,10 +38,6 @@
                                                   :repo "psibi/dhall-mode"
                                                   :fetcher github
                                                   :files ("dhall-mode.el")))
-                                      (lsp-haskell
-                                       :location (recipe
-                                                  :fetcher github
-                                                  :repo "emacs-lsp/lsp-haskell"))
                                       pandoc-mode
                                       all-the-icons
                                       legalese)
@@ -200,9 +193,11 @@ If SPLIT-ONEWINDOW is non-`nil' window is split in persistent action."
   ;; Pandoc mode for markdown
   (add-hook 'markdown-mode-hook 'pandoc-mode)
 
-  (setq lsp-haskell-process-path-hie "hie-wrapper")
-  (require 'lsp-haskell)
-  (add-hook 'haskell-mode-hook #'lsp)
+  (spacemacs/set-leader-keys-for-major-mode 'haskell-mode
+    "G" 'ignore
+    "x" 'xref-find-definitions
+    "a" 'dante-type-at
+    "z" 'dante-info)
 
   ;; Avoid conflicting M-k/j with I3
   (with-eval-after-load 'git-rebase
