@@ -5,7 +5,8 @@
    dotspacemacs-enable-lazy-installation 'unused
    dotspacemacs-ask-for-lazy-installation nil
    dotspacemacs-configuration-layer-path '()
-   dotspacemacs-configuration-layers '(purescript
+   dotspacemacs-configuration-layers '(yaml
+                                       purescript
                                        themes-megapack
                                        c-c++
                                        html
@@ -15,20 +16,14 @@
                                        emacs-lisp
                                        git
                                        markdown
-                                       org
-                                       ansible
                                        rust
                                        pdf
                                        neotree
                                        theming
                                        gnus
-                                       protobuf
-                                       csharp
                                        auto-completion
-                                       fsharp2
-				                               (multiple-cursors :variables multiple-cursors-backend 'evil-mc)
-                                       (haskell :variables
-                                                haskell-completion-backend 'dante)
+                                       (haskell :variables haskell-completion-backend 'lsp)
+                                       (lsp :variables lsp-use-lsp-ui t)
                                        (shell :variables
                                               shell-default-shell 'eshell
                                               shell-default-position 'bottom
@@ -66,8 +61,7 @@
   (user-config/icons)
   (user-config/editing)
   (user-config/legalese)
-  (user-config/layout)
-  (user-config/magit))
+  (user-config/layout))
 
 (defun init/vars ()
   "General variable configurations."
@@ -140,18 +134,7 @@
 (defun user-config/icons ()
   (setq neo-theme 'icons))
 
-(defun user-config/magit ()
-  (load-file "~/.spacemacs.d/magit-gerrit.el"))
-
 (defun user-config/layout ()
-  ;; https://github.com/syl20bnr/spacemacs/issues/7446#issuecomment-417376425
-  (with-eval-after-load "helm"
-    (defun helm-persistent-action-display-window (&optional split-onewindow)
-      "Return the window that will be used for persistent action.
-If SPLIT-ONEWINDOW is non-`nil' window is split in persistent action."
-      (with-helm-window
-        (setq helm-persistent-action-display-window (get-mru-window)))))
-
   (setq projectile-mode-line "Projectile")
   (custom-set-faces
     '(helm-grep-file ((t (:foreground "DarkGray" :underline t))))
@@ -187,17 +170,13 @@ If SPLIT-ONEWINDOW is non-`nil' window is split in persistent action."
         nnml-directory "~/gmail"
         message-directory "~/gmail"))
 
-
-
 (defun user-config/editing ()
+  (setq redisplay-dont-pause t)
+
+  (setq flycheck-checker 'lsp)
+
   ;; Pandoc mode for markdown
   (add-hook 'markdown-mode-hook 'pandoc-mode)
-
-  (spacemacs/set-leader-keys-for-major-mode 'haskell-mode
-    "G" 'ignore
-    "x" 'xref-find-definitions
-    "a" 'dante-type-at
-    "z" 'dante-info)
 
   ;; Avoid conflicting M-k/j with I3
   (with-eval-after-load 'git-rebase
@@ -207,36 +186,17 @@ If SPLIT-ONEWINDOW is non-`nil' window is split in persistent action."
   ;; Golden ratio for the current window
   (evil-leader/set-key "gr" 'golden-ratio)
 
-  ;; Purescript psc
-  (evil-leader/set-key-for-mode 'purescript-mode "a" 'psc-ide-show-type)
-
-  (add-hook 'dante-mode-hook '(lambda() (flycheck-add-next-checker
-                                         'haskell-dante
-                                         '(warning . haskell-hlint))))
-  (add-hook 'dante-mode-hook 'flycheck-mode)
-
-  ;; Line numbers
-  (when (version<= "26.0.50" emacs-version )
-    (setq display-line-numbers-type 'absolute)
-    (custom-set-faces
-     '(line-number ((t (:background "floral white" :foreground "gray80"))))
-     '(line-number-current-line ((t (:background "white" :foreground "black")))))
-    (add-hook 'prog-mode-hook 'display-line-numbers-mode)
-    (add-hook 'conf-mode-hook 'display-line-numbers-mode)
-    (add-hook 'text-mode-hook 'display-line-numbers-mode)
-    (add-hook 'org-mode-hook 'display-line-numbers-modeadd-hook 'yaml-mode-hook 'display-line-numbers-mode))
+  (setq display-line-numbers-type 'absolute)
+  (custom-set-faces
+   '(line-number ((t (:background "white" :foreground "gray"))))
+   '(line-number-current-line ((t (:background "beige" :foreground "black")))))
+  (add-hook 'prog-mode-hook 'display-line-numbers-mode)
+  (add-hook 'conf-mode-hook 'display-line-numbers-mode)
+  (add-hook 'text-mode-hook 'display-line-numbers-mode)
+  (add-hook 'org-mode-hook 'display-line-numbers-modeadd-hook 'yaml-mode-hook 'display-line-numbers-mode)
 
   ;; Cursor
-  (global-evil-mc-mode t)
   (blink-cursor-mode t)
-
-  ;; Org-mode
-  (setq org-agenda-files (mapcar (lambda (d) (concat org-directory d))
-                                 '("/general.org"
-                                   "/work.org"
-                                   "/personnal.org"
-                                   "/school.org"))
-        org-default-notes-file (concat org-directory "/general.org"))
 
   ;; Bindings
   (setq evil-escape-key-sequence "dk")
