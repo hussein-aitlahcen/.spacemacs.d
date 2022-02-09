@@ -5,7 +5,10 @@
    dotspacemacs-enable-lazy-installation 'unused
    dotspacemacs-ask-for-lazy-installation nil
    dotspacemacs-configuration-layer-path '()
-   dotspacemacs-configuration-layers '(yaml
+   dotspacemacs-configuration-layers '(typescript
+                                       python
+                                       ocaml
+                                       yaml
                                        purescript
                                        themes-megapack
                                        c-c++
@@ -16,12 +19,18 @@
                                        emacs-lisp
                                        git
                                        markdown
-                                       rust
                                        pdf
                                        neotree
                                        theming
                                        gnus
-                                       auto-completion
+                                       slack
+                                       ocaml
+                                       agda
+                                       floobits
+                                       (typescript :variables typescript-indent-level 2)
+                                       (multiple-cursors :variables mutliple-cursors-backend 'evil-mc)
+                                       (rust :variables rust-backend 'lsp)
+                                       (lsp :variables lsp-rust-server 'rust-analyzer)
                                        (haskell :variables haskell-completion-backend 'lsp)
                                        (lsp :variables lsp-use-lsp-ui t)
                                        (shell :variables
@@ -33,8 +42,12 @@
                                                   :repo "psibi/dhall-mode"
                                                   :fetcher github
                                                   :files ("dhall-mode.el")))
+                                      (michelson-mode :location (recipe :fetcher url
+                                                                        :url "https://gitlab.com/tezos/tezos/-/raw/master/emacs/michelson-mode.el"))
                                       pandoc-mode
                                       all-the-icons
+                                      eglot
+                                      (helm-ls-git :location "/home/hussein/github/helm-ls-git")
                                       legalese)
    dotspacemacs-frozen-packages '()
    dotspacemacs-excluded-packages '(vi-tilde-fringe
@@ -162,7 +175,7 @@
         gnus-secondary-select-methods '((nnimap "gmail"
                                                 (nnimap-address "imap.gmail.com")
                                                 (nnimap-server-port 993)
-                                                (nnimap-stream ssl)))
+              (nnimap-stream ssl)))
         message-send-mail-function 'smtpmail-send-it
         smtpmail-stream-type 'ssl
         smtpmail-smtp-server "smtp.gmail.com"
@@ -171,9 +184,15 @@
         message-directory "~/gmail"))
 
 (defun user-config/editing ()
+  (setq gc-cons-threshold 10000000000)
+  (setq read-process-output-max (* 1024 1024)) ;; 1mb
+  (setq lsp-log-io nil)
+
+  (setq adaptive-wrap-prefix-mode f)
+
   (setq redisplay-dont-pause t)
 
-  (setq flycheck-checker 'lsp)
+  (setq compilation-scroll-output t)
 
   ;; Pandoc mode for markdown
   (add-hook 'markdown-mode-hook 'pandoc-mode)
