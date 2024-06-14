@@ -37,17 +37,9 @@
                                               shell-default-shell 'eshell
                                               shell-default-position 'bottom
                                               shell-default-height 40))
-   dotspacemacs-additional-packages '((dhall-mode
-                                       :location (recipe
-                                                  :repo "psibi/dhall-mode"
-                                                  :fetcher github
-                                                  :files ("dhall-mode.el")))
-                                      (michelson-mode :location (recipe :fetcher url
-                                                                        :url "https://gitlab.com/tezos/tezos/-/raw/master/emacs/michelson-mode.el"))
-                                      pandoc-mode
+   dotspacemacs-additional-packages '( pandoc-mode
                                       all-the-icons
                                       eglot
-                                      (helm-ls-git :location "/home/hussein/github/helm-ls-git")
                                       legalese)
    dotspacemacs-frozen-packages '()
    dotspacemacs-excluded-packages '(vi-tilde-fringe
@@ -194,9 +186,6 @@
 
   (setq compilation-scroll-output t)
 
-  ;; Pandoc mode for markdown
-  (add-hook 'markdown-mode-hook 'pandoc-mode)
-
   ;; Avoid conflicting M-k/j with I3
   (with-eval-after-load 'git-rebase
     (define-key git-rebase-mode-map (kbd "K") 'git-rebase-move-line-up)
@@ -221,11 +210,6 @@
   (setq evil-escape-key-sequence "dk")
   (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
   (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line))
-
-(defun user-config/pretty ()
-  (load-file "~/.spacemacs.d/pretty-fonts.el")
-  (pretty-fonts-set-kwds
-   '((pretty-fonts-fira-font prog-mode-hook org-mode-hook))))
 
 (defun user-config/legalese ()
   (setq legalese-default-copyright "Hussein Ait-Lahcen"
